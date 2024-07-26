@@ -8,6 +8,29 @@ module.exports = {
       fontFamily: {
         sans: ['"Inter var"', ...defaultTheme.fontFamily.sans],
       },
+      colors:{
+        primary: "#14183E",
+        secondary: '165058',
+      },
+      action: {
+        default: '#165058', 
+        hover: '#165058',   
+        active: '#165058',  
+      },
+      background: {
+        light: '#E3F6F8', 
+      },
+      text: {
+        primary: '#14183E', 
+        secondary: '#1B626D', 
+        muted: '#718096', 
+      },
+      additional: {
+        red: '#CD240D',    
+        yellow: '#EDC22E', 
+        purple: '#9E2DD3',   
+       
+      },
     },
   },
   plugins: [],
