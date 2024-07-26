@@ -21,13 +21,6 @@
     <p>Descripción: {{ libro.volumeInfo.description }}</p>
   </div>
 
-  <!-- consulta completa -->
-  <!-- <div>
-
-    {{ libros}}
-    
-  </div> -->
-
 </template>
 
 
@@ -45,7 +38,7 @@ export default {
     };
   },
   created () {
-    
+
   },
  
   methods: {
