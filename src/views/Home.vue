@@ -23,6 +23,7 @@
     <p>Fecha de Publicación: {{ libro.volumeInfo.publishedDate }}</p>
     <p>Descripción: {{ libro.volumeInfo.description }}</p>
     
+    
   </div>
 
 </template>
@@ -32,11 +33,15 @@
 <script>
 import { ref } from 'vue'
 import BookCard from "../components/BookCard.vue"
+import BookCard from "../components/BookCard.vue"
 import { getBooksByKeyWord } from '../api/apiBooks.js'
 import librosDB from '../db/librosDB.js'
 
 export default {
   name: "Home",
+  components:{
+    BookCard,
+  },
   components:{
     BookCard,
   },
