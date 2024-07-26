@@ -7,7 +7,7 @@
 
   <div>
     <input type="keyword" v-model="keyWord" class="border-2 w-40 m-3">
-    <button v-on:click="getBooksByKeyWord" class="border-2">Buscar</button>
+    <button v-on:click="callGetBooksByKeyWord" class="border-2">Buscar</button>
   
   </div>
 
@@ -33,7 +33,7 @@
 
 <script>
 import { ref } from 'vue'
-// import { methods } from '../api/apiBooks.js'
+import { getBooksByKeyWord } from '../api/apiBooks.js'
 
 export default {
   name: "Home",
@@ -41,28 +41,25 @@ export default {
     return {
       keyWord:"",
       libros: [],
+      errorMsj:"",
     };
   },
-  created () {},
+  created () {
+    
+  },
+ 
   methods: {
-    getBooksByKeyWord(){
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.keyWord}`)
-    .then((resultado) => {
-        if(!resultado.ok) throw new Error("Hay un error " + resultado.status + errorMsj)
-        return resultado.json()
-      })
-      .then((datos) =>{
-        this.movies = datos
-        this.loading = false
-        this.libros = datos
+    callGetBooksByKeyWord() {
+       getBooksByKeyWord(this.keyWord)
+       .then(data =>{
+        this.libros = data
+       })
+       .catch((error) =>{
+            this.errorMsj = error
+        })
 
-      })
-
-      .catch((error) =>{
-        this.errorMsj = error
-        this.loading = false
-      })
-    },
+    }
+   
   }
 };
 

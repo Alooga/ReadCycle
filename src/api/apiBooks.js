@@ -1,63 +1,34 @@
 //definir variables
 
-let keyWord = "";
-let genero = "";
-let author = "";
 
-function getBooksByKeyWord(){
-    //falta url
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWord}`)
-    .then((resultado) => {
-        if(!resultado.ok) throw new Error("Hay un error " + resultado.status + errorMsj)
-        return resultado.json()
+
+//Lamada por palabra clave
+const getBooksByKeyWord = (keyWord) => {
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWord}`)
+            .then((response) => response.json())
+            .then((data) => {
+            return data
+        })
+};
+
+//llamada por categoria
+const getBooksByCategory = (genero) => {
+  
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=subject:${genero}`)
+        .then((response) => response.json())
+        .then((data) => {
+        return data
       })
-      .then((datos) =>{
-        this.movies = datos
-        this.loading = false
-
-      })
-
-      .catch((error) =>{
-        this.errorMsj = error
-        this.loading = false
-      });
     };
 
-function getBooksByCategory(){
+//llamada por autor
+const getBooksByAuthor = (author) =>{
     //falta url
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=subject:${genero}`)
-    .then((resultado) => {
-        if(!resultado.ok) throw new Error("Hay un error " + resultado.status + errorMsj)
-        return resultado.json()
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`)
+    .then((response) => response.json())
+        .then((data) => {
+        return data
       })
-      .then((datos) =>{
-        this.movies = datos
-        this.loading = false
-
-      })
-
-      .catch((error) =>{
-        this.errorMsj = error
-        this.loading = false
-      });
-    };
-function getBooksByAuthor(){
-    //falta url
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`)
-    .then((resultado) => {
-        if(!resultado.ok) throw new Error("Hay un error " + resultado.status + errorMsj)
-        return resultado.json()
-      })
-      .then((datos) =>{
-        this.movies = datos
-        this.loading = false
-
-      })
-
-      .catch((error) =>{
-        this.errorMsj = error
-        this.loading = false
-      });
     };
 
-    export default getBooksByKeyWord;
+    export {getBooksByKeyWord, getBooksByCategory,getBooksByAuthor}
