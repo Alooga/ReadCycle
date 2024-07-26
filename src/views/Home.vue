@@ -10,7 +10,7 @@
     <button v-on:click="callGetBooksByKeyWord" class="border-2">Buscar</button>
   
   </div>
-
+ <BookCard></BookCard>
   <!-- solo campos necesarios -->
   <div v-for="libro in libros.items" class="p-3">
     <p>Id: {{ libro.id}}</p>
@@ -19,6 +19,7 @@
     <p>Autor/es: {{ libro.volumeInfo.authors }} </p>
     <p>Fecha de Publicación: {{ libro.volumeInfo.publishedDate }}</p>
     <p>Descripción: {{ libro.volumeInfo.description }}</p>
+    
   </div>
 
 </template>
@@ -26,10 +27,14 @@
 
 <script>
 import { ref } from 'vue'
+import BookCard from "../components/BookCard.vue"
 import { getBooksByKeyWord } from '../api/apiBooks.js'
 
 export default {
   name: "Home",
+  components:{
+    BookCard,
+  },
   data() {
     return {
       keyWord:"",
