@@ -2,16 +2,21 @@ export default [
     {
       id: 1,
       name:"Nadia",
-      ubic: "",
+      email:"",
+      pass:""
     },  
     {
       id: 2,
       name:"Gigi",
-      ubic: "",
+      email:"",
+      pass:""
+
     },  
     {
       id: 3,
       name:"Alex",
-      ubic: "",
+      email:"",
+      pass:""
+
     },  
 ]
