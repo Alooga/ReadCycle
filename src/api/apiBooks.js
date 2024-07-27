@@ -1,5 +1,11 @@
-//definir variables
-
+//Lamada por Id
+const getBooksById = (id) => {
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q=id:${id}`)
+          .then((response) => response.json())
+          .then((data) => {
+          return data
+      })
+};
 
 
 //Lamada por palabra clave
@@ -31,4 +37,4 @@ const getBooksByAuthor = (author) =>{
       })
     };
 
-    export {getBooksByKeyWord, getBooksByCategory,getBooksByAuthor}
+    export {getBooksByKeyWord, getBooksByCategory,getBooksByAuthor, getBooksById}
