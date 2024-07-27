@@ -1,41 +1,41 @@
 export default [
     {
       id: "fHm2EAAAQBAJ",
-      user:"Nadia",
+      userId: 1,
       ubic: "",
       estado: "",
     },  
     {
       id: "fHm2EAAAQBAJ",
-      user:"Gigi",
+      userId: 2,
       ubic: "",
       estado: "",
     
     },
     {
       id: "fHm2EAAAQBAJ",
-      user:"Alex",
+      userId: 3,
       ubic: "",
       estado: "",
 
     },
     {
       id: "fHm2EAAAQBAJ",
-      user:"Nadia",
+      userId: 1,
       ubic: "",
       estado: "",
 
     },
     {
       id: "fHm2EAAAQBAJ",
-      user:"Gigi",
+      userId: 2,
       ubic: "",
       estado: "",
 
     },
     {
       id: "fHm2EAAAQBAJ",
-      user:"Alex",
+      userId: 3,
       ubic: "",
       estado: "",
 
