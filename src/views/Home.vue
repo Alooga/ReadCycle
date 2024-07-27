@@ -28,10 +28,12 @@
 </template>
 
 
+
 <script>
 import { ref } from 'vue'
 import BookCard from "../components/BookCard.vue"
 import { getBooksByKeyWord } from '../api/apiBooks.js'
+import librosDB from '../db/librosDB.js'
 
 export default {
   name: "Home",
@@ -41,19 +43,20 @@ export default {
   data() {
     return {
       keyWord:"",
-      libros: [],
+      libros:"",
       errorMsj:"",
+      librosData:"",
     };
   },
   created () {
-
+  this.libros = librosDB
   },
  
   methods: {
     callGetBooksByKeyWord() {
        getBooksByKeyWord(this.keyWord)
        .then(data =>{
-        this.libros = data
+        this.librosData = data
        })
        .catch((error) =>{
             this.errorMsj = error
