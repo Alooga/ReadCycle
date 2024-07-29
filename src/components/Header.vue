@@ -1,8 +1,11 @@
 <template>
     <div class="flex h-[175px] w-full">
        <div class="flex self-center justify-between w-full">
-
-            <img src="../images/ReadCycle.svg" alt="logo ReadCycle" class="ps-10"> <!-- logo -->
+            <div class="flex gap-2 ps-10">
+                <img src="../images/BookIcon.svg" alt="logotipo readcycle">
+    
+            <img src="../images/ReadCycle.svg" alt="logo ReadCycle"> <!-- logo -->
+            </div>
             <div class="flex gap-2 ps-10">
                 <img src="../images/BookIcon.svg" alt="logotipo readcycle">
                 <img src="../images/ReadCycle.svg" alt="logo ReadCycle"> <!-- logo -->
