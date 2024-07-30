@@ -18,8 +18,6 @@ import { ref } from 'vue'
 import BookCard from "../components/BookCard.vue"
 import Slider from "../components/Slider.vue"
 
-
-
 export default {
   name: "Home",
   components:{
@@ -30,8 +28,6 @@ export default {
    
     };
   },
-
-
 };
 
 
