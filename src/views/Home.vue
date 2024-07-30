@@ -28,7 +28,7 @@
 <script>
 import { ref } from 'vue'
 import { getBooksByKeyWord } from '../api/apiBooks.js'
-import librosDB from '../db/librosDB.js'
+import usersBooksDB from '../db/usersBooksDB.js'
 
 export default {
   name: "Home",
@@ -41,7 +41,7 @@ export default {
     };
   },
   created () {
-  this.libros = librosDB
+  this.libros = usersBooksDB
   },
  
   methods: {
