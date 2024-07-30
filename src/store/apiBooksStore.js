@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useApiStore = defineStore ('apiBooksStore', { 
     state: () => ({
         books: [],
+        book:null,
     }),
     actions: {
     //Lamada por Id
@@ -23,8 +24,6 @@ export const useApiStore = defineStore ('apiBooksStore', {
     },
   
     },
-    getters: {
-       
-    }
+  
 
     })
