@@ -4,26 +4,21 @@ import usersDB from '../db/usersDB.js';
 
 export const useUsersStore = defineStore ('usersStore', { 
     state: () => ({
-        name: "",
-        location: "",
-        email:"",
-        user:[],
+        users:[],
+        userById:"",
     }),
     actions: {
         usersData() {
-            for (user of usersDB) {
-                this.name = user.name
-                this.location = user.location
-                this.email = user.email
-
-            }
+            this.users = usersDB.map((users) => {
+                return users
+                })
         }
 
     },
     getters: {
         userDataById: (id) => {
           
-            return (user) =>   usersDB.find(id === usersDB.id)
+            return (userById) =>   usersDB.find(id === usersDB.id)
         }
     }
 

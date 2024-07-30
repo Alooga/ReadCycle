@@ -18,20 +18,13 @@ export const useApiStore = defineStore ('apiBooksStore', {
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWord}`)
             .then((response) => response.json())
             .then((data) => {
-            this.books = data.items.volumeInfo
+            this.books = data.items
         })
     },
   
     },
     getters: {
-        // getBooksByKeyWord(keyWord) {
-        //     fetch(`https://www.googleapis.com/books/v1/volumes?q=${keyWord}`)
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //         this.books = data.items
-        //     })
-        // },
-        
+       
     }
 
     })

@@ -1,31 +1,12 @@
 <template>
   <div>
 
-<div v-for="book in booksForCards" key="book.id">
-  {{book.id}}
-</div>
-
-<div>
-    <input type="keyword" v-model="keyWord" class="border-2 w-40 m-3">
-    <button v-on:click="findBooks" class="border-2">Buscar</button>
-  
-  </div>
-
-  <!-- solo campos necesarios -->
-  <div v-for="book in books" class="p-3">
-    <p>Id: {{ book.id}}</p>
-    <p>Titulo: {{ book.volumeInfo.title }}</p>
-    <!-- hay que quitarlo del array, deberiamos hacer otro for? -->
-    <p>Autor/es: {{ book.volumeInfo.authors }} </p>
-    <p>Fecha de Publicación: {{ book.volumeInfo.publishedDate }}</p>
-    <p>Descripción: {{ book.volumeInfo.description }}</p>
-  </div>
 
 
-<!-- estos son los libros de usuarios(array) -->
-  {{ usersBooks }}
+
+
    
-    <!-- <RouterView /> -->
+    <RouterView />
   </div>
 </template>
 
@@ -59,13 +40,15 @@ export default {
     computed: {
       ...mapState(useApiStore, ['books']),
       ...mapState(useUsersBooksStore, ['usersBooks']),
+      ...mapState(useUsersStore, ['users']),
 
       
     },
 
     mounted(){
       // this.getBooksByKeyWord("1984");
-      this.booksForCards()
+      this.booksForCards();
+      this.usersData();
 
     }
     
