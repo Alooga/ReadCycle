@@ -1,17 +1,15 @@
 <template>
   <div>
 
+    <Header />
 
-
-
-
-   
     <RouterView />
   </div>
 </template>
 
 <script>
 import Home from './views/Home.vue'
+import Header from './components/Header.vue'
 import { mapActions } from 'pinia'
 import { mapState } from 'pinia'
 import { useUsersBooksStore } from './store/usersBooksStore.js'
@@ -20,6 +18,7 @@ import { useApiStore } from './store/apiBooksStore.js'
 
 export default {
   name: "App",
+  components: {Header},
   data(){
     return {
     keyWord:"",
@@ -46,13 +45,10 @@ export default {
     },
 
     mounted(){
-      // this.getBooksByKeyWord("1984");
       this.booksForCards();
       this.usersData();
 
     }
-    
-
 };
 </script>
 
