@@ -29,9 +29,9 @@ import { useApiStore } from '../store/apiBooksStore.js'
 
 export default {
   name: "ApiBookCard",
+  components: ['book'],
   data(){
     return {
-      book:[],
 
     }
   },
@@ -39,9 +39,10 @@ export default {
     ...mapState(useApiStore, ['books']),
   },
   methods: {
-    saveBook(bookSelected){
-      this.book = bookSelected
-      console.log(this.book)
+    saveBook(book){
+ 
+      this.$emit('bookselected', book)
+    
     }
   },
 };

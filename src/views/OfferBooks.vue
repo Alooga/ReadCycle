@@ -6,10 +6,8 @@
     <button v-on:click="findBooks" class="border-2">Buscar</button>
   
   </div>
-<p>
-    este es mi idBook:
-  {{ idBook }}
-</p>
+
+  
   <div v-if="showInputs">
     <label for="username"></label>
     <input name="username" type="userName" class="border-2 w-40 m-3" placeholder="Nombre" v-model="userName">
@@ -23,10 +21,8 @@
   </div>
 
 
-   <div v-on:click="saveIdBook(book)">
-    <ApiBookCard></ApiBookCard>
+    <ApiBookCard @bookselected="saveIdBook" :books="books"></ApiBookCard>
        
-   </div>
 
 </template>
 
@@ -42,24 +38,29 @@ import ApiBookCard from '../components/ApiBookCard.vue'
 export default {
   name: "OfferBooks",
   components: {ApiBookCard},
-  props: ['book'],
+ 
 
   data(){
     return {
         keyWord:"",
-        idBook: ApiBookCard.book,
+        idBook:"",
         showInputs: false,
         userName:"",
         email:"",
         location:"",
+
+        
    
   }
   },
   computed: {
     ...mapState(useApiStore, ['books']),
+    
+   
+
   },
   methods: {
-    ...mapActions(useApiStore, ['getBooksById', 'getBooksByKeyWord']),
+    ...mapActions(useApiStore, ['getBooksByKeyWord']),
 
     findBooks(){
         this.getBooksByKeyWord(this.keyWord)
@@ -68,7 +69,6 @@ export default {
 
   saveIdBook(book){
     this.idBook = book.id
-    console.log(this.idBook)
     this.showInputs = true
   },
 }
