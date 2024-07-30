@@ -10,7 +10,10 @@
     <button v-on:click="callGetBooksByKeyWord" class="border-2">Buscar</button>
   
   </div>
+  <div class="grid grid-cols-4">
  <BookCard></BookCard>
+
+</div>
   <!-- solo campos necesarios -->
   <div v-for="libro in libros.items" class="p-3">
     <p>Id: {{ libro.id}}</p>
