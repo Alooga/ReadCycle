@@ -6,6 +6,10 @@
     <button v-on:click="findBooks" class="border-2">Buscar</button>
   
   </div>
+<p>
+    este es mi idBook:
+  {{ idBook }}
+</p>
   <div v-if="showInputs">
     <label for="username"></label>
     <input name="username" type="userName" class="border-2 w-40 m-3" placeholder="Nombre" v-model="userName">
@@ -18,18 +22,12 @@
 
   </div>
 
-  <!-- solo campos necesarios -->
-  <div v-for="book in books" key="book.id" class="p-3">
+
    <div v-on:click="saveIdBook(book)">
-    <!-- <card> -->
-        <p>Titulo: {{ book.volumeInfo.title }}</p>
-        <!-- hay que quitarlo del array, deberiamos hacer otro for? -->
-        <p>Autor/es: {{ book.volumeInfo.authors }} </p>
-        <p>Fecha de Publicación: {{ book.volumeInfo.publishedDate }}</p>
-        <p>Descripción: {{ book.volumeInfo.description }}</p>
-    <!-- </card> -->
+    <ApiBookCard></ApiBookCard>
+       
    </div>
-  </div>
+
 </template>
 
 
@@ -38,17 +36,18 @@
 import { mapState } from 'pinia'
 import { mapActions } from 'pinia'
 import { useApiStore } from '../store/apiBooksStore.js'
-import card from '../components/BookCard.vue'
+import ApiBookCard from '../components/ApiBookCard.vue'
 
 
 export default {
   name: "OfferBooks",
-  components: {card},
+  components: {ApiBookCard},
+  props: ['book'],
 
   data(){
     return {
         keyWord:"",
-        idBook:"",
+        idBook: ApiBookCard.book,
         showInputs: false,
         userName:"",
         email:"",
@@ -69,6 +68,7 @@ export default {
 
   saveIdBook(book){
     this.idBook = book.id
+    console.log(this.idBook)
     this.showInputs = true
   },
 }
