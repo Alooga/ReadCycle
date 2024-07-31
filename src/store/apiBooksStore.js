@@ -6,8 +6,8 @@ export const useApiStore = defineStore ('apiBooksStore', {
     }),
     actions: {
     //Lamada por Id
-     getBooksById(id) {
-            fetch(`https://www.googleapis.com/books/v1/volumes?q=id:${id}`)
+     getBooksByIsbn(isbn) {
+            fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
             .then((response) => response.json())
             .then((data) => {
             this.books = data.items
