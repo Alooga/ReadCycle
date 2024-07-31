@@ -7,7 +7,7 @@
   
   </div>
 
-  
+
   <div v-if="showInputs">
     <label for="username"></label>
     <input name="username" type="userName" class="border-2 w-40 m-3" placeholder="Nombre" v-model="userName">
@@ -20,10 +20,10 @@
 
   </div>
 
-
-    <ApiBookCard @bookselected="saveIdBook" :books="books"></ApiBookCard>
+    <div>
+        <ApiBookCard @bookselected="saveIdBook" :books="books"></ApiBookCard>
        
-
+    </div>
 </template>
 
 
@@ -45,6 +45,7 @@ export default {
         keyWord:"",
         idBook:"",
         showInputs: false,
+        idUser:"",
         userName:"",
         email:"",
         location:"",
@@ -55,6 +56,7 @@ export default {
   },
   computed: {
     ...mapState(useApiStore, ['books']),
+    ...mapState(useUsersStore, ['users']),
     
    
 
@@ -71,6 +73,28 @@ export default {
     this.idBook = book.id
     this.showInputs = true
   },
+
+  registerBook(){
+
+  },
+
+  registerUser() {
+    if(users.find(email !== users.email)){
+
+        console.log("NO esta en la base de datos")
+        let ultimoId = Math.max(...users.map(obj => obj.id));
+        this.idUser = ultimoId +1;
+        users.push({
+            id: this.idUser,
+            name: this.userName,
+            email: this.email,
+            location: this.location
+        })
+    } else {
+        console.log("esta en la base de datos")
+
+    }
+  }
 }
 }
 </script>
