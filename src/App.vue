@@ -28,7 +28,7 @@ export default {
   methods: {
       ...mapActions(useUsersBooksStore, ['booksForCards']),
       ...mapActions(useUsersStore, ['usersData', 'userDataById']),
-      ...mapActions(useApiStore, ['getBooksById', 'getBooksByKeyWord']),
+      ...mapActions(useApiStore, ['getBooksByIsbn', 'getBooksByKeyWord']),
       
       findBooks(){
         this.getBooksByKeyWord(this.keyWord)
