@@ -42,6 +42,7 @@ export default {
     saveBook(book){
  
       this.$emit('bookselected', book)
+      
     
     }
   },

@@ -21,7 +21,7 @@
   </div>
 
     <div>
-        <ApiBookCard @bookselected="saveIdBook" :books="books"></ApiBookCard>
+        <ApiBookCard @bookselected="saveIsbnBook" :books="books"></ApiBookCard>
        
     </div>
 </template>
@@ -32,6 +32,7 @@
 import { mapState } from 'pinia'
 import { mapActions } from 'pinia'
 import { useApiStore } from '../store/apiBooksStore.js'
+import { useUsersStore } from '../store/usersStore.js'
 import ApiBookCard from '../components/ApiBookCard.vue'
 
 
@@ -43,7 +44,7 @@ export default {
   data(){
     return {
         keyWord:"",
-        idBook:"",
+        isbnBook:"",
         showInputs: false,
         idUser:"",
         userName:"",
@@ -68,10 +69,14 @@ export default {
         this.getBooksByKeyWord(this.keyWord)
         console.log(this.keyWord)
   },
+  
+  // esta funcion sirve para guardar el isbn del libro que quiero guardar en mi base de datos
+  saveIsbnBook(book){
+    
 
-  saveIdBook(book){
-    this.idBook = book.id
+    this.isbnBook = book.volumeInfo.industryIdentifiers[0].identifier
     this.showInputs = true
+    console.log(this.isbnBook)
   },
 
   registerBook(){
@@ -79,21 +84,21 @@ export default {
   },
 
   registerUser() {
-    if(users.find(email !== users.email)){
+    // if(users.find(email !== users.email)){
 
-        console.log("NO esta en la base de datos")
-        let ultimoId = Math.max(...users.map(obj => obj.id));
-        this.idUser = ultimoId +1;
-        users.push({
-            id: this.idUser,
-            name: this.userName,
-            email: this.email,
-            location: this.location
-        })
-    } else {
-        console.log("esta en la base de datos")
+    //     console.log("NO esta en la base de datos")
+    //     let ultimoId = Math.max(...users.map(obj => obj.id));
+    //     this.idUser = ultimoId +1;
+    //     users.push({
+    //         id: this.idUser,
+    //         name: this.userName,
+    //         email: this.email,
+    //         location: this.location
+    //     })
+    // } else {
+    //     console.log("esta en la base de datos")
 
-    }
+    // }
   }
 }
 }
