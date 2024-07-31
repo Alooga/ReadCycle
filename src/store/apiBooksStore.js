@@ -21,6 +21,9 @@ export const useApiStore = defineStore ('apiBooksStore', {
             this.books = data.items
         })
     },
+    clearBooks(){
+        this.books = [];
+    }
   
     },
     getters: {
