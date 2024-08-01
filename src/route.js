@@ -5,8 +5,8 @@ import BookView from './views/BookView.vue'
 
 const routes = [
     { path: "/", name: "home", component: Home },
-    { path: "/OfrecerLibro", name: "offerBooks", component: OfferBooks },
-    { path: "/book/:id", name: 'BookView', component: BookView}
+    { path: "/offer-book", name: "offerBooks", component: OfferBooks },
+    { path: "/book/:isbn", name: 'BookView', component: BookView}
 ]
 
 const router = createRouter({
