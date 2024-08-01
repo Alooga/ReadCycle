@@ -15,6 +15,6 @@ export default [
       id: 3,
       name:"Alex",      
       email: "alex@gmail.com",
-      location: "",
+      location: "Sabadell",
     },  
 ]
