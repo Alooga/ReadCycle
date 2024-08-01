@@ -2,19 +2,19 @@ export default [
     {
       id: 1,
       name:"Nadia",
-      email: "",
-      location: "Valencia",
+      email: "nadia.lagosaez@gmail.com",
+      location: "Barcelona",
     },  
     {
       id: 2,
       name:"Gigi",
-      email: "",
-      location: "Barcelona",
+      email: "gigi@gmail.com",
+      location: "Girona",
     },  
     {
       id: 3,
       name:"Alex",      
-      email: "",
-      location: "Bilbao",
+      email: "alex@gmail.com",
+      location: "Sabadell",
     },  
 ]

@@ -28,6 +28,9 @@ export const useApiStore = defineStore ('apiBooksStore', {
             console.error("Error fetching books by keyword:", error);
         });
     },
+    clearBooks(){
+        this.books = [];
+    }
   
     },
   
