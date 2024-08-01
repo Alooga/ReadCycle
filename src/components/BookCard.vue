@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div v-if="book" class="flex flex-col text-left md:flex-row md:gap-8 bg-white drop-shadow-xl rounded-xl p-5">
+    <div v-if="book" class="flex gap-8 text-left md:flex-row md:gap-8 bg-white drop-shadow-xl rounded-xl p-5">
       <img
         class="max-w-[120px] h-auto object-contain"
         :src="book.image" alt="Book Cover"
@@ -17,7 +17,7 @@
         >
           Ver libro
         </button>
-        <div class="flexitems-left justify-between gap-5 text-[0.8rem]">
+        <div class="flex items-left justify-between gap-5 text-[0.8rem]">
           <div class="flex items-center gap-2">
             <img
               src="../assets/UserCircle.svg"
