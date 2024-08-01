@@ -5,16 +5,17 @@ import usersDB from '../db/usersDB.js';
 
 export const useUsersBooksStore = defineStore ('usersBooksStore', { 
     state: () => ({
+    usersBooksApi:[],
     usersBooks:[],
     users: [],
 
     }),
     actions: {
-      /*   booksForCards(){
-            this.usersBooks = usersBooksDB.map((books) => {
+         booksForApiCards(){
+            this.usersBooksApi = usersBooksDB.map((books) => {
             return books
             })
-        } */
+        }, 
         async booksForCards(){
             this.usersBooks = usersBooksDB;
             this.users = usersDB;

@@ -7,6 +7,12 @@
   
   </div>
 
+  <p v-if="errors.length">
+    <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+  </p>
 
   <div v-if="showInputs">
     <label for="username"></label>
@@ -23,6 +29,10 @@
     <div>
         <ApiBookCard @bookselected="saveIsbnBook" :books="books"></ApiBookCard>
        
+    </div>
+
+    <div v-if="saveok">
+      <p class="text-xl">Tu libro se cargó correctamente!</p>
     </div>
 </template>
 
@@ -51,25 +61,27 @@ export default {
         userName:"",
         email:"",
         location:"",
-
-        
-   
+        errors: [],
+        saveok: false,
   }
-  },
+},
+ 
+
   computed: {
     ...mapState(useApiStore, ['books']),
     ...mapState(useUsersStore, ['users']),
-    ...mapState(useUsersBooksStore, ['usersBooks']),
+    ...mapState(useUsersBooksStore, ['usersBooksApi']),
     
    
 
   },
   methods: {
     ...mapActions(useApiStore, ['getBooksByKeyWord', 'clearBooks']),
+    ...mapActions(useUsersBooksStore, ['booksForApiCards']),
 
     findBooks(){
         this.getBooksByKeyWord(this.keyWord)
-        console.log(this.keyWord)
+        this.saveok = false
   },
   
   // esta funcion sirve para guardar el isbn del libro que quiero guardar en mi base de datos
@@ -78,6 +90,24 @@ export default {
     this.showInputs = true
     console.log(this.isbnBook)
   },
+
+  checkForm(){
+      if (this.username && this.email && this.location) {
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.userName) {
+        this.errors.push('El nombre es obligatorio.');
+      }
+      if (!this.email) {
+        this.errors.push('El Email es obligatoria.');
+      }
+      if (!this.location) {
+        this.errors.push('La ubicación es obligatoria.');
+      }
+    },
 
  
   registerUser() {
@@ -104,7 +134,7 @@ export default {
         //Busqueda de último ID para incrementarlo y asignarlo al nuevo usuario
         let ultimoId = Math.max(...users.map(obj => obj.id));
         this.idUser = ultimoId +1;
-        //Carga de nuevo usuario en el array
+        //Carga de nuevo usuario en el array - * Pasar Al Store *
         users.push({
             id: this.idUser,
             name: this.userName,
@@ -116,21 +146,25 @@ export default {
     } 
    
   },
+  // * Pasar a Store *
   registerBook(){
+    this.checkForm()
+    this.booksForApiCards()
+    console.log(this.usersBooksApi)
     //llamo al metodo para comprobar si el usuario existe o no
     this.registerUser()
 
-    const usersBooksStore = useUsersBooksStore();
-    const usersBooksPush = usersBooksStore.usersBooks;
-
     //Ingreso todos los valores en mi BD de books registrados
-    usersBooksPush.push({
+    this.usersBooksApi.push({
       isbn: this.isbnBook,
       userId: this.idUser,
       available: true
     })
     //comprobación por consola
-    console.log(this.usersBooks)
+    console.log(this.usersBooksApi)
+
+    //mensaje de carga ok
+    this.saveok = true
 
      //Vaciar variables
      this.resetFields();
