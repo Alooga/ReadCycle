@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
 import usersBooksDB from '../db/usersBooksDB.js';
+import usersDB from '../db/usersDB.js';
 
 
 export const useUsersBooksStore = defineStore ('usersBooksStore', { 
     state: () => ({
     usersBooks:[],
+    users: [],
 
     }),
     actions: {
@@ -13,15 +15,30 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
             return books
             })
         } */
-        booksForCards(){
+        async booksForCards(){
             this.usersBooks = usersBooksDB;
+            this.users = usersDB;
+            const userBooksPromises = this.usersBooks.map(async userBook =>{
+              const response =  await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${userBook.isbn}`)
+                   const data =  await response.json();
+                   const bookTitle =  data.items[0].volumeInfo.title
+                   const bookAuthor =  data.items[0].volumeInfo.authors
+                   const bookImage =  data.items[0].volumeInfo.imageLinks?.thumbnail
+                 
+                
+             const user = usersDB.find(user=>user.id == userBook.userId)
+             const userName = user.name
+             const userLocation = user.location
+            
+            
+             return {title: bookTitle, author:bookAuthor, image:bookImage, userName: userName, location: userLocation}
+            })
+           this.usersBooks = await Promise.all(userBooksPromises)
+    
         },
-        getBooksByUserId(userId) {
-            return this.usersBooks.filter(book => book.userId === userId);
-        },
-        getUserBookByBookId(bookId) {
-            return this.usersBooks.find(book => book.id === bookId && book.available);
-        }
+
+    
+       
     }
 });
 
