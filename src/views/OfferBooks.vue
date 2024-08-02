@@ -63,6 +63,7 @@ export default {
         location:"",
         errors: [],
         saveok: false,
+        
   }
 },
  
@@ -77,97 +78,103 @@ export default {
   },
   methods: {
     ...mapActions(useApiStore, ['getBooksByKeyWord', 'clearBooks']),
-    ...mapActions(useUsersBooksStore, ['booksForApiCards']),
+    ...mapActions(useUsersBooksStore, ['booksForApiCards', 'saveBook']),
+    ...mapActions(useUsersStore, ['newUser', 'usersData']),
 
     findBooks(){
         this.getBooksByKeyWord(this.keyWord)
         this.saveok = false
   },
   
-  // esta funcion sirve para guardar el isbn del libro que quiero guardar en mi base de datos
+  // esta funcion sirve para captar el isbn del libro que quiero guardar en mi base de datos
   saveIsbnBook(book){
     this.isbnBook = book.volumeInfo.industryIdentifiers[0].identifier
     this.showInputs = true
     console.log(this.isbnBook)
   },
 
-  checkForm(){
-      if (this.username && this.email && this.location) {
+  //aquí checkeo que todos los inputs esten completos
+  checkForm() {
+      this.errors = [];
+      if (this.userName && this.email && this.location) {
         return true;
       }
-
-      this.errors = [];
-
       if (!this.userName) {
         this.errors.push('El nombre es obligatorio.');
       }
       if (!this.email) {
-        this.errors.push('El Email es obligatoria.');
+        this.errors.push('El Email es obligatorio.');
       }
       if (!this.location) {
         this.errors.push('La ubicación es obligatoria.');
       }
+      return false;
     },
 
- 
+ //Reviso si el usuario existe o no
   registerUser() {
     // Variables para acceder al userStore
-    const usersStore = useUsersStore();
-    const users = usersStore.users;
+    this.usersData();
 
     //comprobación de usuario existente
-    const existingUser = users.find(user => user.email === this.email);
+    const existingUser = this.users.find(user => user.email === this.email);
 
     //si existe usuario, recuperar ID para guardar el libro
     if (existingUser){
       this.idUser = existingUser.id
 
       //comprobación por consola
-      console.log("esta en la base de datos")
-      console.log(this.idUser)
-
-    //si no existe crearlo autoincrementando el Id más alto   
-    } else {
+      console.log("esta en la base de datos",this.idUser)
+    } 
+     //si no existe crearlo autoincrementando el Id más alto  
+    else {
         //comprobación por consola
         console.log("NO esta en la base de datos")
 
         //Busqueda de último ID para incrementarlo y asignarlo al nuevo usuario
-        let ultimoId = Math.max(...users.map(obj => obj.id));
+        let ultimoId = Math.max(...this.users.map(obj => obj.id));
         this.idUser = ultimoId +1;
-        //Carga de nuevo usuario en el array - * Pasar Al Store *
-        users.push({
+
+        //Carga de nuevo usuario en el array
+        this.newUser({
             id: this.idUser,
             name: this.userName,
             email: this.email,
             location: this.location
-        })
+          })
+        
         //comprobación por consola
-        console.log(users)
+        console.log("usuario actualizado", this.users)
     } 
    
   },
-  // * Pasar a Store *
+  // Metodo para llamar a todos los anteriores al tocar el boton registrar
   registerBook(){
-    this.checkForm()
+    //Comprbacion: inicializo el array para ver que estan todos los libros cargados juntos
     this.booksForApiCards()
-    console.log(this.usersBooksApi)
-    //llamo al metodo para comprobar si el usuario existe o no
-    this.registerUser()
 
-    //Ingreso todos los valores en mi BD de books registrados
-    this.usersBooksApi.push({
-      isbn: this.isbnBook,
-      userId: this.idUser,
-      available: true
-    })
-    //comprobación por consola
-    console.log(this.usersBooksApi)
+    //Revisar formulario
+  if(this.checkForm()){
+ 
+      //llamo al metodo para comprobar si el usuario existe o no
+      this.registerUser();
 
-    //mensaje de carga ok
-    this.saveok = true
-
-     //Vaciar variables
-     this.resetFields();
+      //Ingreso todos los valores en mi BD de books registrados
+      this.saveBook({
+        isbn: this.isbnBook,
+        userId: this.idUser,
+        available: true
+      })
+    
+      //Comprobacion: por consola
+      console.log(this.usersBooksApi)
+      
+      //mensaje de carga ok
+      this.saveok = true
+    
+      //Vaciar variables
+      this.resetFields();
+    }
   },
 
   //metodo para resetear las variables

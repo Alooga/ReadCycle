@@ -16,6 +16,10 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
             return books
             })
         }, 
+        saveBook(book){
+            this.usersBooksApi.push(book)
+        },
+
         async booksForCards(){
             this.usersBooks = usersBooksDB;
             this.users = usersDB;
