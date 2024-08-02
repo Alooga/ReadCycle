@@ -17,6 +17,9 @@ export const useUsersStore = defineStore("usersStore", {
     getUserById(id) {
       return this.users.find(user => user.id === id);
     },
+    newUser(object){
+      this.users.push(object);
+    },
     
   },
  /*  getters: {
