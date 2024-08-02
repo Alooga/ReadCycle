@@ -1,9 +1,11 @@
 import Home from "./views/Home.vue";
+import OfferBooks from "./views/OfferBooks.vue";
 import { createWebHistory, createRouter } from 'vue-router'
 import BookView from './views/BookView.vue'
 
 const routes = [
     { path: "/", name: "home", component: Home },
+    { path: "/offer-book", name: "offerBooks", component: OfferBooks },
     { path: "/book/:isbn", name: 'BookView', component: BookView}
 ]
 

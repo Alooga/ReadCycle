@@ -1,34 +1,78 @@
 <template>
-    <div class="flex h-[175px] w-full">
-       <div class="flex self-center justify-between w-full">
-            <div class="flex gap-2 ps-10">
-                <img src="../images/BookIcon.svg" alt="logotipo readcycle">
-    
-            <img src="../images/ReadCycle.svg" alt="logo ReadCycle"> <!-- logo -->
-            </div>
+    <header class="flex flex-col justify-between gap-5 md:flex-row items-center p-4 md:p-8 bg-white shadow-md">
+      <!-- Contenedor del Logo y Menú -->
        
-            <div id="buscador_top" class="flex border border-3 border-[#2A9AAA] rounded-full w-[469px] h-[49px]"> <!-- buscador con imagen lupa que en click dirige/activa resultados -->
-                <input type="text" class="w-5/6 bg-transparent px-5 outline-none"> <!-- incluir aqui @keyup.enter="" para que en la busqueda se vaya a la página de resultados de búsqueda con el router -->
-                <img src="../images/magnifying-glass-solid.svg" alt="icono lupa" class="h-5 w-1/6 self-center ps-8"> <!-- aqui faltaria ponerle el @click="" para que en la busqueda se vaya a la página de resultados de búsqueda con el router -->
-            </div> <!-- buscador con imagen lupa que en click dirige/activa resultados -->
-            <ul class="flex justify-around pe-10 text-xl font-semibold gap-24"> <!-- Falta enlazar con @click="" para que acudan a cada página que corresponda -->
-                <li class="self-center">Home</li> <!-- enlace a buscar libro -->
-                <li class="self-center">Buscar libro</li> <!-- enlace a buscar libro -->
-                <li class="self-center">Ofrecer libro</li> <!-- enlace a ofrecer libro -->
-                <li class="self-center">Mapa</li> <!-- enlace a mapa -->  
-            </ul>
-        </div> 
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <!-- Logo -->
+        <RouterLink to="/">
+          <img
+            class="w-[150px] md:w-[200px]"
+            src="../images/logo-read-cycle.svg"
+            alt="logotipo readcycle"
+          />
+        </RouterLink>
+  
+        <!-- Botón del menú hamburguesa para dispositivos móviles -->
+   <!--      <button @click="toggleMenu" class="md:hidden flex items-center">
+          <div class="tham tham-e-squeeze tham-w-6">
+            <div class="tham-box">
+              <div class="tham-inner"/>
+            </div>
+          </div>
+        </button> -->
+      </div>
+  
+      <!-- Buscador visible en pantallas grandes -->
+      <div
+        id="buscador_top"
+        class="hidden md:flex border border-3 border-[#2A9AAA] rounded-full w-[300px] md:w-[500px] p-3"
+      >
+        <input
+          type="text"
+          class="w-5/6 bg-transparent px-5 outline-none"
+          placeholder="Escribe título, autor o género"
+        />
+        <img
+          src="../images/magnifying-glass-solid.svg"
+          alt="icono lupa"
+          class="h-5 w-1/6 self-center ps-8"
+        />
+      </div>
+  
+      <!-- Menú de navegación visible en pantallas grandes -->
+      <ul class="flex md:flex items-end text-[1rem] gap-10">
+        <li>
+          <RouterLink to="/">Inicio</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/offer-book">Ofrecer Libro</RouterLink>
+        </li>
+      </ul>
+  
+      <!-- Menú desplegable para dispositivos móviles -->
+      <div class="md:hidden flex flex-col items-end bg-[white]  w-full">
+        
+      <div id="buscador_mobile" class="flex border border-3 border-[#2A9AAA] rounded-full w-[100%] h-[49px] m-4">
+        <input type="text" class="w-5/6 bg-transparent px-5 outline-none" placeholder="Escribe título, autor o género"/>
+        <img src="../images/magnifying-glass-solid.svg" alt="icono lupa" class="h-5 w-1/6 self-center"/>
+      </div>
+      
     </div>
-    
-    
-</template>
-
-<script>
-    export default {
-        name: "Header",
-        data() {
-            return {
-            }
-        }
+    </header>
+  </template>
+  
+  <script>
+  export default {
+    name: "Header",
+    data() {
+      return {
+        isMenuOpen: false
+      };
+    },
+    methods: {
+      toggleMenu() {
+        this.isMenuOpen = !this.isMenuOpen;
+      }
     }
-</script>
+  }
+  </script>
