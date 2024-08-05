@@ -2,14 +2,16 @@
   <div>
     <div
       v-if="book"
-      class="flex gap-8 text-left md:flex-row md:gap-8 bg-white drop-shadow-xl rounded-xl p-5"
+      class="flex flex-col gap-5 text-left xl:flex-row md:gap-5 bg-white drop-shadow-xl rounded-xl p-8 w-full max-w-md overflow-hidden"
+      role="article"
+      aria-labelledby="book-info"
     >
       <img
         class="max-w-[120px] h-auto object-contain"
         :src="book.image"
         alt="Book Cover"
       />
-      <div class="flex flex-col justify-around gap-3">
+      <div class="flex flex-col justify-around gap-3 w-full">
         <div class="space-y-3">
           <h3 class="font-serif text-[1.2rem] font-bold">{{ book.title }}</h3>
           <div v-for="author in book.author">
@@ -17,11 +19,12 @@
           </div>
         </div>
         <button
-          class= "text-primary border-2 border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white]"
-        >
+          class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
+          aria-label="View book details"
+          >
           Ver libro
         </button>
-        <div class="flex items-left justify-between gap-5 text-[0.8rem]">
+        <div class="flex flex-col items-left justify-between md:gap-1 text-[0.8rem]">
           <div class="flex items-center gap-2">
             <img
               src="../assets/UserCircle.svg"

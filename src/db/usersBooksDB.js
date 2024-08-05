@@ -11,7 +11,7 @@ export default [
     
     },
     {
-      isbn: 9780307277671,
+      isbn: 9788499898438,
       userId: 3,
       available: false,
 
@@ -23,7 +23,7 @@ export default [
 
     },
     {
-      isbn: 9780451524935,
+      isbn: 9788490069394,
       userId: 2,
       available:true,
 

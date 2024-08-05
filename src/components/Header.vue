@@ -1,5 +1,5 @@
 <template>
-    <header class="flex flex-col justify-between gap-5 md:flex-row items-center p-4 md:p-8 bg-white shadow-md">
+    <header class="flex justify-between gap-5 md:flex-row items-center p-4 md:p-8 bg-white shadow-md">
       <!-- Contenedor del Logo y Menú -->
        
       <div class="flex items-center justify-between w-full md:w-auto">
@@ -23,7 +23,7 @@
       </div>
   
       <!-- Buscador visible en pantallas grandes -->
-      <div
+      <!-- <div
         id="buscador_top"
         class="hidden md:flex border border-3 border-[#2A9AAA] rounded-full w-[300px] md:w-[500px] p-3"
       >
@@ -37,10 +37,10 @@
           alt="icono lupa"
           class="h-5 w-1/6 self-center ps-8"
         />
-      </div>
+      </div> -->
   
       <!-- Menú de navegación visible en pantallas grandes -->
-      <ul class="flex md:flex items-end text-[1rem] gap-10">
+      <ul class="flex justify-end text-[1rem] gap-10  text-right">
         <li>
           <RouterLink to="/">Inicio</RouterLink>
         </li>
@@ -49,15 +49,6 @@
         </li>
       </ul>
   
-      <!-- Menú desplegable para dispositivos móviles -->
-      <div class="md:hidden flex flex-col items-end bg-[white]  w-full">
-        
-      <div id="buscador_mobile" class="flex border border-3 border-[#2A9AAA] rounded-full w-[100%] h-[49px] m-4">
-        <input type="text" class="w-5/6 bg-transparent px-5 outline-none" placeholder="Escribe título, autor o género"/>
-        <img src="../images/magnifying-glass-solid.svg" alt="icono lupa" class="h-5 w-1/6 self-center"/>
-      </div>
-      
-    </div>
     </header>
   </template>
   

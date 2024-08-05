@@ -48,12 +48,7 @@ module.exports = {
         secondary: '#1B626D', 
         muted: '#718096', 
       },
-      additional: {
-        red: '#CD240D',    
-        yellow: '#EDC22E', 
-        purple: '#9E2DD3',   
-       
-      },
+      
     },
   },
   plugins: [require('tailwind-hamburgers')],

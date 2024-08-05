@@ -1,33 +1,37 @@
 <template>
 
-<div>
-    <label for="keyword">Qué libro quieres ofrecer?</label>
-    <input type="keyword" v-model="keyWord" class="border-2 w-40 m-3" name="keyword" placeholder="Libro/Autor">
-    <button v-on:click="findBooks" class="border-2">Buscar</button>
+<div class="flex flex-col gap-4 justify-center items-center bg-[#E3F6F8] p-20 w-full h-auto md:h-[500px]">
+    <label class="text-[2.4rem] text-primary leading-[3rem] font-semibold font-serif md:text-5xl md:p-8 lg:text-6xl lg:p-5" for="keyword">¿Qué libro quieres ofrecer?</label>
+    <input type="keyword" v-model="keyWord" class="bg-white px-5 outline-none border-3 border-[#2A9AAA] rounded-full p-3 w-full md:w-1/3 text-center" name="keyword" placeholder="Escribe título, autor o género">
+    <button v-on:click="findBooks"  class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">Buscar</button>
   
   </div>
 
-  <p v-if="errors.length">
+  <p class="mt-10" v-if="errors.length">
     <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
   </p>
 
-  <div v-if="showInputs">
+  <div class="px-10 pt-10 flex flex-col md:flex-row md:px-8 xl:px-28 justify-center gap-3 align-middle" v-if="showInputs">
+    <div class="flex flex-col md:flex-row gap-3 md:w-1/2">
     <label for="username"></label>
-    <input name="username" type="userName" class="border-2 w-40 m-3" placeholder="Nombre" v-model="userName">
+    <input name="username" type="userName" class="border-2 w-full py-3 px-5 rounded-full focus:border-[#007B7F]" placeholder="Escribe tu nombre" v-model="userName">
     <label for="email"></label>
-    <input name="email" type="email" class="border-2 w-40 m-3" placeholder="Email" v-model="email">
+    <input name="email" type="email" class="border-2 py-3 w-full px-5 rounded-full" placeholder="Email" v-model="email">
+  </div>
+  <div class="flex flex-col md:flex-row justify-center gap-3 w-full md:w-1/2">
     <label for="location"></label>
-    <input name="location" type="location" class="border-2 w-40 m-3" placeholder="Ubicación" v-model="location">
-
-    <button v-on:click="registerBook" class="border-2">Registrar</button>
+    <input name="location" type="location" class="border-2 py-3 px-5 rounded-full w-full" placeholder="Ubicación" v-model="location">
+    <button v-on:click="registerBook"   class="bg-[#207581] rounded-[2rem] text-white w-full py-3 hover:bg-[#115D67] px-5">Registrar</button>
+  </div>
+   
 
   </div>
 
-    <div>
-        <ApiBookCard @bookselected="saveIsbnBook" :books="books"></ApiBookCard>
+    <div >
+        <ApiBookCard class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-10" @bookselected="saveIsbnBook" :books="books"></ApiBookCard>
        
     </div>
 
