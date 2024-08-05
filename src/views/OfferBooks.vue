@@ -7,28 +7,32 @@
   
   </div>
 
+  <!-- Información del libro seleccionado -->
+  <div v-if="selectedBook && !saveok" class="flex flex-col justify-center items-center w-full md:flex-row px-5 p-5 md:p-28 gap-5" ref="formContainer">
+      <div class="flex flex-col gap-5 p-8 justify-center self-center  py-5 w-full">
+        <h1 class="w-full font-regular text-md">Has seleccionado el libro:</h1>
+        <p class="font-serif font-bold text-2xl"> {{ selectedBook.volumeInfo.title }}</p>
+        <img
+              class="max-w-200px] h-auto object-contain self-center"
+              :src="selectedBook.volumeInfo.imageLinks.smallThumbnail"
+              alt=""
+            />
+        
+      </div>
+      <div class="text-left flex flex-col gap-5 justify-center items-center w-full p-6">
+        <input name="username" type="text" class="border-2 w-full py-3 px-5 rounded-full focus:border-[#007B7F]" placeholder="Escribe tu nombre" v-model="userName">
+        <input name="email" type="email" class="border-2 py-3 w-full px-5 rounded-full" placeholder="Email" v-model="email">
+        <input name="location" type="text" class="border-2 py-3 px-5 rounded-full w-full" placeholder="Ubicación" v-model="location">
+        <button @click="registerBook" class="bg-[#207581] rounded-[2rem] text-white w-full py-3 hover:bg-[#115D67] px-5">Registrar</button>
+      </div>
+    </div>
+
   <p class="mt-10" v-if="errors.length">
     <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
   </p>
-
-  <div class="px-10 pt-10 flex flex-col md:flex-row md:px-8 xl:px-28 justify-center gap-3 align-middle" v-if="showInputs">
-    <div class="flex flex-col md:flex-row gap-3 md:w-1/2">
-    <label for="username"></label>
-    <input name="username" type="userName" class="border-2 w-full py-3 px-5 rounded-full focus:border-[#007B7F]" placeholder="Escribe tu nombre" v-model="userName">
-    <label for="email"></label>
-    <input name="email" type="email" class="border-2 py-3 w-full px-5 rounded-full" placeholder="Email" v-model="email">
-  </div>
-  <div class="flex flex-col md:flex-row justify-center gap-3 w-full md:w-1/2">
-    <label for="location"></label>
-    <input name="location" type="location" class="border-2 py-3 px-5 rounded-full w-full" placeholder="Ubicación" v-model="location">
-    <button v-on:click="registerBook"   class="bg-[#207581] rounded-[2rem] text-white w-full py-3 hover:bg-[#115D67] px-5">Registrar</button>
-  </div>
-   
-
-  </div>
 
     <div >
         <ApiBookCard class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-10" @bookselected="saveIsbnBook" :books="books"></ApiBookCard>
@@ -67,6 +71,7 @@ export default {
         location:"",
         errors: [],
         saveok: false,
+        selectedBook: null,
         
   }
 },
@@ -92,9 +97,15 @@ export default {
   
   // esta funcion sirve para captar el isbn del libro que quiero guardar en mi base de datos
   saveIsbnBook(book){
+    this.selectedBook = book
     this.isbnBook = book.volumeInfo.industryIdentifiers[0].identifier
     this.showInputs = true
     console.log(this.isbnBook)
+    console.log(this.selectedBook.volumeInfo.title)
+    // Desplazar la vista hacia el formulario
+    this.$nextTick(() => {
+        this.$refs.formContainer.scrollIntoView({ behavior: 'smooth' })
+      })
   },
 
   //aquí checkeo que todos los inputs esten completos
@@ -193,6 +204,7 @@ export default {
     this.email = "";
     this.location = "";
     this.showInputs = false;
+    this.selectedBook = null
     this.clearBooks();
 
   }
