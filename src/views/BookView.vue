@@ -1,11 +1,16 @@
 <template>
 
-<div class="flex justify-around">
-        <img :src="bookImage" :alt="bookImageAlt" class="w-60 self-center">
+<div class="flex justify-around m-20">
+        <img :src="bookById.image" :alt="bookImageAlt" class="w-60 self-center">
+        <p>{{ bookById.userName }} - {{ bookById.location }}</p>
+    
     <div class="flex flex-col self-center p-10 w-3/5">
-        <h1>{{ bookTitle }}</h1>
-        <p>{{ bookAuthor }} - {{ bookYear }} - {{ bookPublisher }}</p>
-        <p>{{ bookDescription }}</p> 
+        <h1>{{ bookById.title }}</h1>
+        <div v-for="author in bookById.authors" :key="author">
+                <p class="text-[0.8rem] leading-[1rem]">{{ author }}</p>
+              </div>
+        <p>{{ bookById.year }} - {{ bookById.publisher }}</p>
+        <p>{{ bookById.description }}</p> 
     </div>
 </div>
 
@@ -13,63 +18,39 @@
 
 
 <script>
-import { ref } from 'vue'
-
 import { mapActions, mapState } from 'pinia'
 //De aqui importo el usuario
 import { useUsersBooksStore  } from '../store/usersBooksStore.js'
-//De aqui importo la info del libro
-import { useApiStore } from '../store/apiBooksStore.js'
+
 
     export default {
         name: "BookView",
-        //Mostrar (SEGUNDO los datos se colocan en el lugar que indico aqui)
+        props: {
+            // book: Object,
+            id: String,
+        },
+    
+       
         computed: {
-            ...mapState(useApiStore,['books']),
-
-            bookImage() {
-                return this.books[0]?.volumeInfo.imageLinks.thumbnail
-            },
-
-            bookImageAlt() {
-                return `Portada del libro ${this.bookTitle}`
-            },
-
-            bookTitle() {
-                //console.log(this.books[0]?.volumeInfo?.title)
-                return this.books[0]?.volumeInfo?.title
-            },
-
-            bookAuthor() {
-                return this.books[0]?.volumeInfo.authors.join(",")
-            },
-
-            bookPublisher() {
-                return this.books[0]?.volumeInfo.publisher
-            },
-
-            bookYear() {
-                console.log(this.books[0]?.volumeInfo.publishedDate.slice(0, -3))
-                return this.books[0]?.volumeInfo.publishedDate.slice(0, 4)
-            },
-
-            bookDescription() {
-                return this.books[0]?.volumeInfo.description
-            }
+            // ...mapState(useApiStore,['books']),
+            ...mapState(useUsersBooksStore,['usersBooks']),
 
         },
-        //Manipular (PRIMERO doy aqui los datos)
+       
         methods: {
             ...mapActions(useUsersBooksStore, ['usersBooks']),
-            ...mapActions(useApiStore, ['getBooksByIsbn'])
         },
         //se invoca automaticamente sin accion del usuario
         mounted() {
-            this.getBooksByIsbn(this.$route.params.isbn)
+           this.bookById = this.usersBooks.find(book=>book.id == this.id)
+
         },
 
         data() {
-            return {};
+            return {
+                bookById:{},
+               
+            };
         },
 
     }

@@ -31,14 +31,16 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
                    const bookDescription = data.items[0].volumeInfo.description
                    const bookYear = data.items[0].volumeInfo.publishedDate.slice(0, 4);
                    const bookPublisher = data.items[0].volumeInfo.publisher
+                   const isbn = data.items[0].volumeInfo.industryIdentifiers[0].identifier
+
                  
-                
+            
              const user = usersDB.find(user=>user.id == userBook.userId)
              const userName = user.name
              const userLocation = user.location
             
             
-             return {title: bookTitle, author:bookAuthor, image:bookImage, description:bookDescription, year:bookYear, publisher:bookPublisher, userName: userName, location: userLocation}
+             return {id: userBook.id, isbn: isbn, title: bookTitle, author:bookAuthor, image:bookImage, description:bookDescription, year:bookYear, publisher:bookPublisher, userName: userName, location: userLocation}
             })
            this.usersBooks = await Promise.all(userBooksPromises)
     
