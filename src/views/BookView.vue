@@ -6,13 +6,16 @@
     
     <div class="flex flex-col self-center p-10 w-3/5">
         <h1>{{ bookById.title }}</h1>
-        <div v-for="author in bookById.authors" :key="author">
-                <p class="text-[0.8rem] leading-[1rem]">{{ author }}</p>
-              </div>
+        <div v-for="author in bookById.author" :key="author">
+            <p class="text-[0.8rem] leading-[1rem]">{{ author }}</p>
+        </div>
         <p>{{ bookById.year }} - {{ bookById.publisher }}</p>
         <p>{{ bookById.description }}</p> 
     </div>
 </div>
+
+<button class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
+aria-label="View book details">Reservar</button>
 
 </template>
 
