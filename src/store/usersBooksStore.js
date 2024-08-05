@@ -12,9 +12,8 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
     }),
     actions: {
          booksForApiCards(){
-            this.usersBooksApi = usersBooksDB.map((books) => {
-            return books
-            })
+            this.usersBooksApi = usersBooksDB
+        
         }, 
         saveBook(book){
             this.usersBooksApi.push(book)
