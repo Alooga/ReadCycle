@@ -40,7 +40,7 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
              const userLocation = user.location
             
             
-             return {id: userBook.id, isbn: isbn, title: bookTitle, author:bookAuthor, image:bookImage, description:bookDescription, year:bookYear, publisher:bookPublisher, userName: userName, location: userLocation}
+             return {id: userBook.id, status:userBook.available, isbn: isbn, title: bookTitle, author:bookAuthor, image:bookImage, description:bookDescription, year:bookYear, publisher:bookPublisher, userName: userName, location: userLocation}
             })
            this.usersBooks = await Promise.all(userBooksPromises)
     

@@ -11,12 +11,37 @@
         </div>
         <p>{{ bookById.year }} - {{ bookById.publisher }}</p>
         <p>{{ bookById.description }}</p> 
+        <p>{{ bookById.status }}</p>
     </div>
 </div>
 
-<button class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
+<button v-if="!showInputs" @click="showInputs=true" class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
 aria-label="View book details">Reservar</button>
 
+<p class="mt-10" v-if="errors.length">
+    <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+  </p>
+
+  <div v-if="showInputs && !showMsj" class="m-10">
+    <div class="p-5">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" placeholder="Nombre">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email">
+    </div>
+    <button @click="reserveBook" class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
+    aria-label="View book details">Reservar</button>
+
+</div>
+
+<div v-if="showMsj" @click="checkForm">
+    <p>Has reservado el libro {{ bookById.title }}!</p>
+    <p>Hemos enviado a tu email los datos de contacto para que realicen el intercambio</p>
+    <p>Disfruta tu lectura!</p>
+</div>
 </template>
 
 
@@ -32,16 +57,18 @@ import { useUsersBooksStore  } from '../store/usersBooksStore.js'
             // book: Object,
             id: String,
         },
-    
-       
+        data() {
+            return {
+                bookById:{},
+                showInputs: false,
+                showMsj: false,
+                errors: [],
+               
+            };
+        },
         computed: {
             // ...mapState(useApiStore,['books']),
             ...mapState(useUsersBooksStore,['usersBooks']),
-
-        },
-       
-        methods: {
-            ...mapActions(useUsersBooksStore, ['usersBooks']),
         },
         //se invoca automaticamente sin accion del usuario
         mounted() {
@@ -49,12 +76,32 @@ import { useUsersBooksStore  } from '../store/usersBooksStore.js'
 
         },
 
-        data() {
-            return {
-                bookById:{},
-               
-            };
+        methods: {
+            ...mapActions(useUsersBooksStore, ['usersBooks']),
+
+            reserveBook(){
+                //cambiar estado del libro a no disponible
+                this.showMsj = true
+                this.bookById.status = false
+            },
+
+              //aquí checkeo que todos los inputs esten completos
+  checkForm() {
+      this.errors = [];
+      if (this.userName && this.email) {
+        return true;
+      }
+      if (!this.userName) {
+        this.errors.push('El nombre es obligatorio.');
+      }
+      if (!this.email) {
+        this.errors.push('El Email es obligatorio.');
+      }
+      return false;
+    },
         },
+        
+        
 
     }
 </script>
