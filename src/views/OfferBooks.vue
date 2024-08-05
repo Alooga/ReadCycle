@@ -75,14 +75,14 @@ export default {
   computed: {
     ...mapState(useApiStore, ['books']),
     ...mapState(useUsersStore, ['users']),
-    ...mapState(useUsersBooksStore, ['usersBooksApi']),
+    ...mapState(useUsersBooksStore, ['usersBooksApi', 'usersBooks']),
     
    
 
   },
   methods: {
     ...mapActions(useApiStore, ['getBooksByKeyWord', 'clearBooks']),
-    ...mapActions(useUsersBooksStore, ['booksForApiCards', 'saveBook']),
+    ...mapActions(useUsersBooksStore, ['booksForApiCards', 'saveBook', 'booksForCards']),
     ...mapActions(useUsersStore, ['newUser', 'usersData']),
 
     findBooks(){
@@ -178,6 +178,9 @@ export default {
     
       //Vaciar variables
       this.resetFields();
+
+      //Actualizar Home
+      this.booksForCards();
     }
   },
 
