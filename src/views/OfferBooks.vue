@@ -72,6 +72,7 @@ export default {
         errors: [],
         saveok: false,
         selectedBook: null,
+        idBook:"",
         
   }
 },
@@ -174,8 +175,13 @@ export default {
       //llamo al metodo para comprobar si el usuario existe o no
       this.registerUser();
 
+      //Busqueda de último ID para incrementarlo y asignarlo al nuevo libro
+      let ultimoIdBook = Math.max(...this.usersBooksApi.map(obj => obj.id));
+      this.idBook = ultimoIdBook +1;
+
       //Ingreso todos los valores en mi BD de books registrados
       this.saveBook({
+        id: this.idBook,
         isbn: this.isbnBook,
         userId: this.idUser,
         available: true
