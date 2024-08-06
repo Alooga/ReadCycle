@@ -88,10 +88,6 @@ export default {
     return {
       availableBooks
     };
-
-    return {
-      usersBooks,
-    };
   },
 };
 </script>
