@@ -14,7 +14,7 @@
         <p class="font-serif font-bold text-2xl"> {{ selectedBook.volumeInfo.title }}</p>
         <img
               class="max-w-200px] h-auto object-contain self-center"
-              :src="selectedBook.volumeInfo.imageLinks.smallThumbnail"
+              :src="selectedBook.volumeInfo.imageLinks?.thumbnail"
               alt=""
             />
         

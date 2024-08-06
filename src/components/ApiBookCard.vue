@@ -28,7 +28,7 @@
           <div class="flex space-y-3 gap-3">
             <img
               class="max-w-[120px] h-auto object-contain"
-              :src="book.volumeInfo.imageLinks.smallThumbnail"
+              :src="book.volumeInfo.imageLinks?.thumbnail"
               alt=""
             />
             <div class="flex flex-col gap-3">
