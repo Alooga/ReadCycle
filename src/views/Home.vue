@@ -4,10 +4,15 @@
   <h3 class="font-serif text-[2rem] font-bold mt-14 mb-10">Últimos libros</h3>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-10">
     <BookCard
+      v-for="availableBook in availableBooks"
+      :key="availableBook.isbn"
+      :book="availableBook"
+    />
+    <!-- <BookCard
       v-for="userBook in usersBooks"
       :key="userBook.isbn"
       :book="userBook"
-    />
+    /> -->
   </div>
 
   <section class="grid grid-cols-1 text-left md:grid-cols-2  px-4 md:px-16 py-16 md:py-36">
@@ -76,6 +81,13 @@ export default {
     });
 
     const usersBooks = computed(() => usersBooksStore.usersBooks);
+    const availableBooks = computed(() => {
+      return usersBooks.value.filter(book => book.status == true).sort((a, b) => b.id - a.id);;
+    });
+
+    return {
+      availableBooks
+    };
 
     return {
       usersBooks,
