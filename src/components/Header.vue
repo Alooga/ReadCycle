@@ -60,10 +60,5 @@
         isMenuOpen: false
       };
     },
-    methods: {
-      toggleMenu() {
-        this.isMenuOpen = !this.isMenuOpen;
-      }
-    }
   }
   </script>
