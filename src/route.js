@@ -1,12 +1,12 @@
 import Home from "./views/Home.vue";
 import OfferBooks from "./views/OfferBooks.vue";
-import { createWebHistory, createRouter } from 'vue-router'
-import BookView from './views/BookView.vue'
+import BookView from './views/BookView.vue';
+import { createWebHistory, createRouter } from 'vue-router';
 
 const routes = [
     { path: "/", name: "home", component: Home },
+    { path: "/book/:id", name: 'BookView', component: BookView, props: true },
     { path: "/offer-book", name: "offerBooks", component: OfferBooks },
-    { path: "/book/:isbn", name: 'BookView', component: BookView}
 ]
 
 const router = createRouter({

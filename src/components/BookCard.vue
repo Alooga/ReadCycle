@@ -18,12 +18,10 @@
             <p class="text-[0.8rem]">{{ author }}</p>
           </div>
         </div>
-        <button
-          class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
-          aria-label="View book details"
-          >
-          Ver libro
-        </button>
+        <RouterLink :to="`/book/${book.id}`"
+        class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
+          aria-label="View book details">Ver Libro</RouterLink>
+        
         <div class="flex flex-col items-left justify-between md:gap-1 text-[0.8rem]">
           <div class="flex items-center gap-2">
             <img
@@ -52,10 +50,13 @@
 
 <script>
 import { ref, onMounted, computed } from "vue";
+import { RouterLink } from "vue-router";
 
 export default {
   props: {
     book: Object,
+    
+    
   },
 };
 </script>
