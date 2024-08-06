@@ -4,12 +4,15 @@
     <Header />
 
     <RouterView />
+    
   </div>
+  <Footer/>
 </template>
 
 <script>
 import Home from './views/Home.vue'
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 import { mapActions } from 'pinia'
 import { mapState } from 'pinia'
 import { useUsersBooksStore } from './store/usersBooksStore.js'
@@ -18,7 +21,7 @@ import { useApiStore } from './store/apiBooksStore.js'
 
 export default {
   name: "App",
-  components: {Header},
+  components: {Header, Footer},
   data(){
     return {
     keyWord:"",

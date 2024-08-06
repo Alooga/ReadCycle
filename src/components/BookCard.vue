@@ -19,7 +19,7 @@
           </div>
         </div>
         <RouterLink :to="`/book/${book.id}`"
-        class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
+        class= "text-primary text-center border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
           aria-label="View book details">Ver Libro</RouterLink>
         
         <div class="flex flex-col items-left justify-between md:gap-1 text-[0.8rem]">
