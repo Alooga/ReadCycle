@@ -82,12 +82,13 @@ export default {
     },
 
     methods: {
-        ...mapActions(useUsersBooksStore, ['usersBooks']),
+        ...mapActions(useUsersBooksStore, ['updateBookStatus']),
         reserveBook(){
             if(this.checkForm()) {
             //cambiar estado del libro a no disponible
             this.showMsj = true
             this.bookById.status = false
+            this.updateBookStatus({ id: this.bookById.id, status: false })
         }
         },
           //aquí checkeo que todos los inputs esten completos

@@ -19,6 +19,13 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
             this.usersBooksApi.push(book)
             //unshift
         },
+        
+        updateBookStatus({ id, status }) {
+            const book = this.usersBooks.find(book => book.id === id);
+            if (book) {
+              book.status = status;
+            }
+          },
 
         async booksForCards(){
             this.usersBooks = usersBooksDB;
