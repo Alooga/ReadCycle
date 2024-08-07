@@ -39,6 +39,7 @@
                 class="w-4 h-4"
               />
               <p>{{ book.location }}</p>
+             
             </div>
             <div></div>
           </div>

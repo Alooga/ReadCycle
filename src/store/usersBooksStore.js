@@ -8,6 +8,7 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
     usersBooksApi:[],
     usersBooks:[],
     users: [],
+    userBookState:[],
 
     }),
     actions: {
@@ -17,15 +18,8 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
         }, 
         saveBook(book){
             this.usersBooksApi.push(book)
-            //unshift
+            
         },
-        
-        updateBookStatus({ id, status }) {
-            const book = this.usersBooks.find(book => book.id === id);
-            if (book) {
-              book.status = status;
-            }
-          },
 
         async booksForCards(){
             this.usersBooks = usersBooksDB;
@@ -53,6 +47,24 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
            this.usersBooks = await Promise.all(userBooksPromises)
     
         },
+
+        updateBookStatus(id) {
+            const updateBookInd = this.usersBooks.findIndex(book => book.id == id)
+            this.usersBooks[updateBookInd].status = false
+           
+
+            console.log(this.userBooksApi)
+
+            // const bookApi = this.usersBooksApi.find(book => book.id == id);
+            // if (bookApi) {
+            //   bookApi.available = false;
+            // }
+            // const book = this.usersBooks.find(book => book.id == id);
+            // if (book) {
+            //   book.status = false;
+            // }
+       
+          },
 
     
        

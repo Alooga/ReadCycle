@@ -56,7 +56,7 @@ import { useUsersBooksStore  } from '../store/usersBooksStore.js'
 export default {
     name: "BookView",
     props: {
-        // book: Object,
+        
         id: String,
     },
     data() {
@@ -72,23 +72,32 @@ export default {
     },
 
     computed: {
-        // ...mapState(useApiStore,['books']),
         ...mapState(useUsersBooksStore,['usersBooks']),
+        
     },
 
     //se invoca automaticamente sin accion del usuario
     mounted() {
-       this.bookById = this.usersBooks.find(book=>book.id == this.id)
+        this.fetchBook()
     },
 
     methods: {
-        ...mapActions(useUsersBooksStore, ['updateBookStatus']),
+        ...mapActions(useUsersBooksStore, ['booksForCards', 'updateBookStatus' ]),
+        
+        async fetchBook() {
+            await this.booksForCards();
+            this.bookById = this.usersBooks.find(book => book.id == this.id);
+        },
+
         reserveBook(){
             if(this.checkForm()) {
             //cambiar estado del libro a no disponible
             this.showMsj = true
-            this.bookById.status = false
-            this.updateBookStatus({ id: this.bookById.id, status: false })
+            this.bookById.status = false;
+            console.log(this.bookById)
+            this.updateBookStatus(this.bookById.id);
+            
+            console.log(this.usersBooks)
         }
         },
           //aquí checkeo que todos los inputs esten completos
