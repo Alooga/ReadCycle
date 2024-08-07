@@ -1,68 +1,85 @@
 <template>
-<!-- Contenedor general exterior card max width -->
-<div class="flex flex-col w-full lg:items-center">
-    <!-- Contenedor general - contenido -->
-    <div class="flex flex-col items-center justify-center pt-5 md:m-10 md:shadow-xl rounded-3xl lg:w-4/5 lg:mt-20">
-        <!-- Contiene foto libro y todo el texto - boton a parte -->
-        <div class="lg:flex lg:px-10 lg:gap-5">
-            <!-- Contenedor de los elementos de la izquierda (libro + usuario que ofrece y dirección) -->
-            <div class="flex flex-col lg:w-1/3">
-                <img :src="bookById.image" :alt="bookImageAlt" class="w-52 md:w-72 self-center md:self-start md:ms-10 md:mb-5 mt-12 lg:self-center">
-            </div>
-            <!-- Contenedor de información en texto del libro -->
-            <div class="flex flex-col text-justify px-10 lg:w-2/3">
-                <h1 class="font-serif text-2xl font-bold text-left mt-10 lg:text-5xl">{{ bookById.title }}</h1>
-                <div v-for="author in bookById.author" :key="author">
-                    <p class="text-md leading-[1rem] italic pb-5 lg:pt-5">{{ author }}</p>
-                </div>
-                <p>{{ bookById.year }}</p>
-                <p class="pb-5">{{ bookById.publisher }}</p>
-                <p class="px-2 text-justify">{{ bookById.description }}</p> 
-            <!-- Contenedor de icono e info de usuario -->
-                <div class="flex justify-start items-start text-left my-10">
-                    <img src="../assets/MapPin.svg" alt="Map pin" class="w-6 md:ms-10"/>
-                    <p class="text-sm text-[#57aab5] mx-2 md:mx-2 md:self-center"><span class="font-semibold">{{ bookById.userName }}</span> dispone de este libro para compartir<br class="hidden" /> en <span class="font-semibold">{{ bookById.location }}</span></p> 
-                </div>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-[20%_80%] gap-12 p-28 items-center justify-center">
+        <div class="flex justify-center items-center">
+            <img :src="bookById.image" :alt="bookImageAlt" class="w-[400px] ">
         </div>
-
-        <!-- FORMULARIO DE RESERVAS -->
-         <div v-if="showInputs && !showMsj" class="border border-teal-400 rounded-3xl md:mt-10 mx-5 p-5">
-             <div>
-             <p class="mt-10" v-if="errors.length">
-                 <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
-                 <ul>
-                   <li v-for="error in errors">{{ error }}</li>
-                 </ul>
-               </p>
-             </div>
+        <div class="text-left self-center">
+                    <h1 class="font-serif text-2xl font-bold text-left mt-10 lg:text-4xl">{{ bookById.title }}</h1>
+                    <div v-for="author in bookById.author" :key="author">
+                        <p class="text-md leading-[1rem] lg:pt-5"><span class="font-bold">Autor: </span>{{ author }}</p>
+                    </div>
+                    <p><span class="font-bold">Fecha de publicación: </span>{{ bookById.year }}</p>
+                    <p class="pb-5"><span class="font-bold">Editorial: </span>{{ bookById.publisher }}</p>
+                    <p class="text-justify"><span class="font-bold">Decripción: </span>{{ bookById.description }}</p> 
+                    
+                    <div class="flex justify-between items-center py-10 ">
+                        <div>
+                            
+                 <div class="flex items-center gap-2">
+                <img
+                src="../assets/UserCircle.svg"
+                alt="User icon"
+                class="w-4 h-4"
+                />
+                <p>{{ bookById.userName }}</p>
+            </div>
+            <div class="flex items-center gap-1">
+                <img
+                    src="../assets/MapPin.svg"
+                    alt="Location icon"
+                    class="w-4 h-4"
+                />
+                <p>{{ bookById.location }}</p>
+            </div>
+                    </div>
+                    <button v-if="!showInputs" @click="showInputs=true" class="bg-[#207581] rounded-[2rem] text-white py-3 hover:bg-[#115D67] px-5">Lo quiero</button> 
+                    <div v-if="showInputs && !showMsj">
+                 <div class="text-left flex gap-5 justify-center items-center w-full">
+                     <input class="border-2 py-3 px-5 rounded-full focus:border-[#007B7F]" v-model="name" type="text" name="name" placeholder="Nombre">
+                     <input class="border-2 py-3 px-5 rounded-full focus:border-[#007B7F]" v-model="email" type="email" name="email" placeholder="Email">
+                 <div v-if="showInputs && !showMsj">
+                    <div>
+                        <p class="mt-10" v-if="errors.length">
+                            <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+                            <ul>
+                                <li v-for="error in errors">{{ error }}</li>
+                            </ul>
+                        </p>
+                    </div>
+                     <button @click="reserveBook" class="bg-[#207581] rounded-[2rem] text-white w-full py-3 hover:bg-[#115D67] px-5"
+                     aria-label="View book details">Reservar</button>
+                     
+                </div>
+                 
              
-               <div v-if="showInputs && !showMsj">
-                 <div class="flex flex-col items-start p-5 gap-3">
-                     <label for="name">Nombre</label>
-                     <input class="border mb-5" v-model="name" type="text" name="name" placeholder="Nombre">
-                     <label for="email">Email</label>
-                     <input class="border" v-model="email" type="email" name="email" placeholder="Email">
-                 </div>
-                 <button @click="reserveBook" class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
-                 aria-label="View book details">Reservar</button>
-             
-             </div>
-             
-             <div v-if="showMsj">
-                 <p>Has reservado el libro {{ bookById.title }}!</p>
-                 <p>Hemos enviado a tu email los datos de contacto para que realicen el intercambio</p>
-                 <p>Disfruta tu lectura!</p>
-             </div>
-
+        </div>
          </div>
+                </div>
+                
+               
+                
+       
+                </div> 
 
+                
+               
+            </div>
+            
+   
+    <div>
+        
+          <div>
+          
+    
+         <div class="grid grid-cols-1 text-center  items-center justify-center p-10 gap-5" v-if="showMsj">
+                 <h5 class="font-serif font-semibold text-[2rem]">Has reservado el libro {{ bookById.title }}!</h5>
+                 <p>Hemos enviado a tu email los datos de contacto para que realicen el intercambio</p>
+                 <p class="font-bold">Disfruta tu lectura!</p>
+                 <RouterLink  to="/" class= "text-primary border-2 mx-auto  border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver más libros</RouterLink>
+             </div>
 
         <!-- Botón de reservar -->
-        <div class="flex pb-10 md:mb-5">
-                <button v-if="!showInputs" @click="showInputs=true" class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
-                aria-label="View book details">Reservar</button>
-        </div>
+        
     </div>
 </div>
 
