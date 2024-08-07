@@ -27,8 +27,7 @@
         </div>
 
         <!-- FORMULARIO DE RESERVAS -->
-         <div v-if="showInputs && !showMsj" class="border border-teal-400 rounded-3xl md:mt-10 mx-5">
-
+         <div v-if="showInputs && !showMsj" class="border border-teal-400 rounded-3xl md:mt-10 mx-5 p-5">
              <div>
              <p class="mt-10" v-if="errors.length">
                  <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
@@ -39,11 +38,11 @@
              </div>
              
                <div v-if="showInputs && !showMsj">
-                 <div class="p-5">
+                 <div class="flex flex-col items-start p-5 gap-3">
                      <label for="name">Nombre</label>
-                     <input v-model="name" type="text" name="name" placeholder="Nombre">
+                     <input class="border mb-5" v-model="name" type="text" name="name" placeholder="Nombre">
                      <label for="email">Email</label>
-                     <input v-model="email" type="email" name="email" placeholder="Email">
+                     <input class="border" v-model="email" type="email" name="email" placeholder="Email">
                  </div>
                  <button @click="reserveBook" class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px]"
                  aria-label="View book details">Reservar</button>
