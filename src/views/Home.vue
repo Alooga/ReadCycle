@@ -35,8 +35,7 @@
         <div>
           <h6 class="font-bold text-lg">Contacta a otros Usuarios</h6>
           <p>
-            Usa el chat interno para acordar el intercambio con otros
-            usuarios.
+           Si hay alguna persona interesada te enviaremos un email con sus datos
           </p>
         </div>
       </div>

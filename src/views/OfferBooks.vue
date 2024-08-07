@@ -1,11 +1,26 @@
 <template>
 
-<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-44 px-5 md:p-36 w-full h-auto gap-5">
+<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-56 px-5 md:p-40 w-full h-auto gap-5">
     <label class="text-[2.3rem] text-primary leading-[3rem] font-semibold font-serif md:text-5xl md:p-8 lg:text-6xl lg:p-5" for="keyword">¿Qué libro quieres ofrecer?</label>
-    <input type="keyword" v-model="keyWord" class="bg-white px-5 outline-none border-3 border-[#2A9AAA] rounded-full p-3 w-full md:w-1/3 text-center focus:bg-white" name="keyword" placeholder="Escribe título, autor o género">
-    <button v-on:click="findBooks"  class= "text-primary border-2 border-[#207581] mt-5 py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">Buscar</button>
-  
+    <div
+        id="buscador_top"
+        class="md:flex relative border border-3 border-[#2A9AAA] rounded-full w-[350px] md:w-[500px] ">
+      
+        <input
+         v-model="keyWord"
+         type="keyword"
+         class="w-full bg-white px-5 py-3 outline-none rounded-full "
+          placeholder="Escribe título, autor o género"
+        />
+        
+
+        <button 
+       v-on:click="findBooks"
+        class="absolute right-0 top-0 bottom-0 bg-[#2A9AAA] text-white px-4 rounded-r-full"
+        >🔎</button>
+      </div>
   </div>
+  
 
   <!-- Información del libro seleccionado -->
   <div v-if="selectedBook && !saveok" class="flex flex-col justify-center items-center w-full md:flex-row px-5 p-5 md:p-28 gap-5" ref="formContainer">

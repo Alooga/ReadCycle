@@ -17,23 +17,24 @@
         <h1
           class="text-[2rem] leading-[3rem] font-bold md:text-5xl md:p-8 lg:text-6xl lg:p-5"
         >
-          <span class="text-[#1B626D]">Lee,</span> comparte,
-          <span class="text-[#1B626D]">recicla</span>
+          <span class="text-[#207581]">Lee,</span> comparte,
+          <span class="text-[#207581]">recicla</span>
         </h1>
         <p class="font-sans font-regular sm:text-lg lg:text-xl">
           Dale una nueva vida a tus libros
         </p>
         <div
-          class="flex md:flex-row justify-center items-center gap-2 md:gap-4 text-base md:text-lg font-sans py-5 w-full max-w-lg md:max-w-xl mx-auto"
+          class="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 text-base md:text-lg font-sans  py-3 px-5 w-full max-w-lg md:max-w-xl mx-auto"
         >
           <RouterLink
-            class="bg-[#207581] py-3 px-5 text-white rounded-full text-base md:text-lg w-auto md:w-auto hover:bg-[#115D67]"
+            class="text-primary border-2 bg-white border-[#207581] py-3 px-5 rounded-full hover:bg-[#207581] hover:text-white text-base md:text-lg w-auto md:w-auto"
           to="/search-book"
           >
             Buscar libro
           </RouterLink>
           <RouterLink
-            class="text-primary border-2 bg-white border-[#207581] py-3 px-5 rounded-full hover:bg-[#207581] hover:text-white text-base md:text-lg w-auto md:w-auto"
+          class="bg-[#207581] py-3 px-5 text-white rounded-full text-base md:text-lg w-auto md:w-auto hover:bg-[#115D67]"
+            
             to="/offer-book"
           >
             Ofrecer Libro

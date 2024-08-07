@@ -71,7 +71,7 @@
           <div>
           
     
-         <div class="grid grid-cols-1 text-center  items-center justify-center p-10 gap-5" v-if="showMsj">
+         <div ref="messageContainer" class="grid grid-cols-1 text-center  items-center justify-center pb-40 gap-5" v-if="showMsj">
                  <h5 class="font-serif font-semibold text-[2rem]">Has reservado el libro {{ bookById.title }}!</h5>
                  <p>Hemos enviado a tu email los datos de contacto para que realicen el intercambio</p>
                  <p class="font-bold">Disfruta tu lectura!</p>
@@ -128,6 +128,9 @@ export default {
             //cambiar estado del libro a no disponible
             this.showMsj = true
             this.bookById.status = false
+            this.$nextTick(() => {
+        this.$refs.messageContainer.scrollIntoView({ behavior: 'smooth' })
+      })
         }
         },
           //aquí checkeo que todos los inputs esten completos
@@ -144,6 +147,7 @@ export default {
             }
             return false;
             },
+           
     },
                     
                     

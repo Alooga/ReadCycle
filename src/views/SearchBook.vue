@@ -1,22 +1,26 @@
 <template>
- <div
+
+<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-60 px-5 md:p-40 w-full h-auto gap-5">
+    <h3 class="text-[2rem] text-primary leading-[3rem] font-semibold font-serif md:text-4xl md:p-8 lg:text-6xl lg:p-5" for="keyword">Buscar tu libro</h3>
+   <div
         id="buscador_top"
-        class="hidden md:flex border border-3 border-[#2A9AAA] rounded-full w-[300px] md:w-[500px] p-3"
-      >
+        class="md:flex relative border border-3 border-[#2A9AAA] rounded-full w-[350px] md:w-[500px] ">
+      
         <input
           v-model="keyword"
           type="text"
-          class="w-5/6 bg-transparent px-5 outline-none"
+         class="w-full bg-white px-5 py-3 outline-none rounded-full "
           placeholder="Escribe título, autor o género"
         />
-        <img
-          src="../images/magnifying-glass-solid.svg"
-          alt="icono lupa"
-          class="h-5 w-1/6 self-center ps-8"
-        />
+        
 
-        <button @click="searchBook">Buscar</button>
+        <button 
+        @click="searchBook"
+        class="absolute right-0 top-0 bottom-0 bg-[#2A9AAA] text-white px-4 rounded-r-full"
+        >🔎</button>
       </div>
+  </div>
+ 
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-10">
         <BookCard
