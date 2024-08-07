@@ -5,22 +5,22 @@
     <div class="sm:flex sm:flex-col xl:flex-row sm:mx-20 lg:mx-56 md:my-20 items-center justify-center md:border-4 border-[#57aab589] rounded-3xl p-14 lg:px-5 lg:p-20">
         <!-- Contenedor de los elementos de la izquierda (libro + usuario que ofrece y dirección) -->
         <div class="flex flex-col">
-            <img :src="bookById.image" :alt="bookImageAlt" class="w-72 self-center">
+            <img :src="book.image" :alt="bookImageAlt" class="w-72 self-center">
             <!-- Contenedor de icono e info de usuario -->
             <div class="flex justify-start items-start text-left md:text-justify py-8 gap-3 md:gap-5">
                 <img src="../assets/UserCircle.svg" alt="User icon" class="w-5 md:w-8"/>
-                <p class="text-sm"><span class="font-semibold">{{ bookById.userName }}</span><br/>{{ bookById.location }}</p> 
+                <p class="text-sm"><span class="font-semibold">{{ book.userName }}</span><br/>{{ book.location }}</p> 
             </div>
         </div>
        <!-- Contenedor de información en texto del libro -->
         <div class="flex flex-col text-justify md:w-3/5 p-20">
-            <h1 class="font-serif text-2xl font-bold text-left">{{ bookById.title }}</h1>
-            <div v-for="author in bookById.author" :key="author">
+            <h1 class="font-serif text-2xl font-bold text-left">{{ book.title }}</h1>
+            <div v-for="author in book.author" :key="author">
                 <p class="text-md leading-[1rem] italic pb-5">{{ author }}</p>
             </div>
-            <p>{{ bookById.year }}</p>
-            <p class="pb-5">{{ bookById.publisher }}</p>
-            <p class="text-left md:text-justify">{{ bookById.description }}</p> 
+            <p>{{ book.year }}</p>
+            <p class="pb-5">{{ book.publisher }}</p>
+            <p class="text-left md:text-justify">{{ book.description }}</p> 
 <!--             <p>{{ bookById.status }}</p>
  -->            
 <!-- Botón de reservar -->
@@ -53,7 +53,7 @@
 </div>
 
 <div v-if="showMsj">
-    <p>Has reservado el libro {{ bookById.title }}!</p>
+    <p>Has reservado el libro {{ book.title }}!</p>
     <p>Hemos enviado a tu email los datos de contacto para que realicen el intercambio</p>
     <p>Disfruta tu lectura!</p>
 </div>
@@ -69,12 +69,12 @@ import { useUsersBooksStore  } from '../store/usersBooksStore.js'
 export default {
     name: "BookView",
     props: {
-        // book: Object,
+        
         id: String,
     },
     data() {
         return {
-            bookById:{},
+            book:[],
             showInputs: false,
             showMsj: false,
             errors: [],
@@ -85,22 +85,32 @@ export default {
     },
 
     computed: {
-        // ...mapState(useApiStore,['books']),
         ...mapState(useUsersBooksStore,['usersBooks']),
+        
+
     },
 
     //se invoca automaticamente sin accion del usuario
     mounted() {
-       this.bookById = this.usersBooks.find(book=>book.id == this.id)
+        this.fetchBook()
+       
     },
 
     methods: {
-        ...mapActions(useUsersBooksStore, ['usersBooks']),
+        ...mapActions(useUsersBooksStore, ['booksForCards', 'updateBookStatus' ]),
+        
+        async fetchBook() {
+            await this.booksForCards();
+            this.book = this.usersBooks.find(book => book.id == this.id);
+        },
+
         reserveBook(){
             if(this.checkForm()) {
             //cambiar estado del libro a no disponible
             this.showMsj = true
-            this.bookById.status = false
+            this.updateBookStatus(this.id);
+            
+            console.log(this.usersBooks)
         }
         },
           //aquí checkeo que todos los inputs esten completos
@@ -118,7 +128,6 @@ export default {
             return false;
             },
     },
-                    
                     
 
 }

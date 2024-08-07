@@ -83,6 +83,7 @@ export default {
         saveok: false,
         selectedBook: null,
         idBook:"",
+       
         
   }
 },
@@ -112,6 +113,7 @@ export default {
   saveIsbnBook(book){
     this.selectedBook = book
     this.isbnBook = book.volumeInfo.industryIdentifiers[0].identifier
+    this.titleBook = book.volumeInfo.title
     this.showInputs = true
     console.log(this.isbnBook)
     console.log(this.selectedBook.volumeInfo.title)
@@ -150,7 +152,7 @@ export default {
     //si existe usuario, recuperar ID para guardar el libro
     if (existingUser){
       this.idUser = existingUser.id
-
+      this.userName = existingUser.name
       //comprobación por consola
       console.log("esta en la base de datos",this.idUser)
     } 
@@ -188,19 +190,28 @@ export default {
       this.registerUser();
 
       //Busqueda de último ID para incrementarlo y asignarlo al nuevo libro
-      let ultimoIdBook = Math.max(...this.usersBooksApi.map(obj => obj.id));
+      let ultimoIdBook = Math.max(...this.usersBooks.map(obj => obj.id));
       this.idBook = ultimoIdBook +1;
-
+      
+     
+      console.log(this.userName)
       //Ingreso todos los valores en mi BD de books registrados
       this.saveBook({
         id: this.idBook,
+        status: true,
         isbn: this.isbnBook,
-        userId: this.idUser,
-        available: true
+        title: this.selectedBook.volumeInfo.title,
+        author: this.selectedBook.volumeInfo.authors,
+        image: this.selectedBook.volumeInfo.imageLinks?.thumbnail,
+        description: this.selectedBook.volumeInfo.description,
+        year: this.selectedBook.volumeInfo.publishedDate.slice(0, 4),
+        publisher: this.selectedBook.volumeInfo.publisher,
+        userName: this.userName,
+        location: this.location,
       })
     
       //Comprobacion: por consola
-      console.log(this.usersBooksApi)
+      console.log(this.usersBooks)
       
       //mensaje de carga ok
       this.saveok = true

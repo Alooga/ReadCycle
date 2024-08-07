@@ -80,6 +80,7 @@ export default {
   },
    mounted() {
     this.booksForCards();
+   
   },
   methods: {
     ...mapActions(useUsersBooksStore, ['booksForCards']),
