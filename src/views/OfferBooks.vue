@@ -14,7 +14,7 @@
         <p class="font-serif font-bold text-2xl"> {{ selectedBook.volumeInfo.title }}</p>
         <img
               class="max-w-200px] h-auto object-contain self-center"
-              :src="selectedBook.volumeInfo.imageLinks.smallThumbnail"
+              :src="selectedBook.volumeInfo.imageLinks?.thumbnail"
               alt=""
             />
         
@@ -72,6 +72,7 @@ export default {
         errors: [],
         saveok: false,
         selectedBook: null,
+        idBook:"",
         
   }
 },
@@ -174,8 +175,13 @@ export default {
       //llamo al metodo para comprobar si el usuario existe o no
       this.registerUser();
 
+      //Busqueda de último ID para incrementarlo y asignarlo al nuevo libro
+      let ultimoIdBook = Math.max(...this.usersBooksApi.map(obj => obj.id));
+      this.idBook = ultimoIdBook +1;
+
       //Ingreso todos los valores en mi BD de books registrados
       this.saveBook({
+        id: this.idBook,
         isbn: this.isbnBook,
         userId: this.idUser,
         available: true

@@ -16,7 +16,7 @@ export default [
       id: 3,
       isbn: 9788499898438,
       userId: 3,
-      available: false,
+      available: true,
 
     },
     {
@@ -37,7 +37,7 @@ export default [
       id: 6,
       isbn: 9780743273565,
       userId: 3,
-      available: false,
+      available: true,
 
     }
 ]
