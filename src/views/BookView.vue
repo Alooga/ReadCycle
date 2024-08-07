@@ -62,7 +62,7 @@
 
 <script>
 import { mapActions, mapState } from 'pinia'
-//De aqui importo el usuario
+//De aqui importo los libros
 import { useUsersBooksStore  } from '../store/usersBooksStore.js'
 
 

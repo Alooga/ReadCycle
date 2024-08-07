@@ -26,11 +26,12 @@
         <div
           class="flex md:flex-row justify-center items-center gap-2 md:gap-4 text-base md:text-lg font-sans py-5 w-full max-w-lg md:max-w-xl mx-auto"
         >
-        <!--   <button
+          <RouterLink
             class="bg-[#207581] py-3 px-5 text-white rounded-full text-base md:text-lg w-auto md:w-auto hover:bg-[#115D67]"
+          to="/search-book"
           >
             Buscar libro
-          </button> -->
+          </RouterLink>
           <RouterLink
             class="text-primary border-2 bg-white border-[#207581] py-3 px-5 rounded-full hover:bg-[#207581] hover:text-white text-base md:text-lg w-auto md:w-auto"
             to="/offer-book"
