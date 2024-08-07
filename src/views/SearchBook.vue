@@ -18,12 +18,12 @@
         <button @click="searchBook">Buscar</button>
       </div>
 
-      <div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-10">
         <BookCard
-      v-for="bookS in books"
-      :key="bookS.isbn"
-      :book="bookS"
-    />
+          v-for="book in books"
+          :key="book.isbn"
+          :book="book"
+        />
       </div>
 </template>
 
@@ -31,24 +31,32 @@
 <script>
 import { mapActions, mapState } from 'pinia'
 import { useUsersBooksStore  } from '../store/usersBooksStore.js'
-
+import BookCard from "../components/BookCard.vue";
 
 export default {
     name: "SearchBook",
+    components: {BookCard},
     data() {
         return {
             keyword:"",
+            books: [],
         }
     },
     computed: {
         ...mapState(useUsersBooksStore,['usersBooks']),
 
     },
+    mounted() {
+     
+    },
 
     methods:{
-        searchBook(){
-            const books = this.usersBooks.filter(book => book.title.includes(this.keyword) ||book.author.includes(this.keyword))
-            return this.books
+      searchBook(){
+          console.log(this.usersBooks)
+            this.books = this.usersBooks.filter(book => 
+            book.title.toLowerCase().includes(this.keyword.toLowerCase()))
+            console.log(this.books)
+           
         }
 
     },

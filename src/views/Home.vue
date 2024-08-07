@@ -8,11 +8,7 @@
       :key="availableBook.isbn"
       :book="availableBook"
     />
-    <!-- <BookCard
-      v-for="userBook in usersBooks"
-      :key="userBook.isbn"
-      :book="userBook"
-    /> -->
+    
   </div>
 
   <section class="grid grid-cols-1 text-left md:grid-cols-2  px-4 md:px-16 py-16 md:py-36">

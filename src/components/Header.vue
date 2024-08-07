@@ -47,6 +47,9 @@
         <li>
           <RouterLink to="/offer-book">Ofrecer Libro</RouterLink>
         </li>
+        <li>
+          <RouterLink to="/search-book">Buscar Libro</RouterLink>
+        </li>
       </ul>
   
     </header>
