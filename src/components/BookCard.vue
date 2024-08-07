@@ -2,12 +2,12 @@
   <div>
     <div
       v-if="book"
-      class="flex flex-col gap-5 text-left xl:flex-row md:gap-5 bg-white drop-shadow-xl rounded-xl p-8 w-full max-w-md overflow-hidden"
+      class="flex gap-5 text-left xl:flex-row md:gap-5 bg-white drop-shadow-xl rounded-xl p-8 w-full max-w-md overflow-hidden"
       role="article"
       aria-labelledby="book-info"
     >
       <img
-        class="max-w-[120px] h-auto object-contain"
+        class="max-w-[100px] h-auto object-contain"
         :src="book.image"
         alt="Book Cover"
       />

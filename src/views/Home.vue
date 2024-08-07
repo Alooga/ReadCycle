@@ -15,7 +15,7 @@
     /> -->
   </div>
 
-  <section class="grid grid-cols-1 text-left md:grid-cols-2  px-4 md:px-16 py-16 md:py-36">
+  <section class="grid grid-cols-1 text-left md:grid-cols-2 md:px-16 p-8 py-16 md:py-36">
   <div>
     <div>
       <p class="font-semibold text-lg">RECICLA TUS LIBROS</p>

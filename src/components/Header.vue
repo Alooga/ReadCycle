@@ -1,12 +1,12 @@
 <template>
-    <header class="flex justify-between gap-5 md:flex-row items-center p-4 md:p-8 bg-white shadow-md">
+    <header class="flex justify-between gap-3 md:flex-row items-center px-5 py-8 md:p-8 bg-white shadow-md">
       <!-- Contenedor del Logo y Menú -->
        
       <div class="flex items-center justify-between w-full md:w-auto">
         <!-- Logo -->
         <RouterLink to="/">
           <img
-            class="w-[150px] md:w-[200px]"
+            class="w-[70%]"
             src="../images/logo-read-cycle.svg"
             alt="logotipo readcycle"
           />
@@ -40,7 +40,7 @@
       </div> -->
   
       <!-- Menú de navegación visible en pantallas grandes -->
-      <ul class="flex justify-end text-[1rem] gap-10  text-right">
+      <ul class="flex w-full justify-end text-[1rem] gap-8  text-right">
         <li>
           <RouterLink to="/">Inicio</RouterLink>
         </li>
