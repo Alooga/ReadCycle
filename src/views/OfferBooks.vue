@@ -1,9 +1,9 @@
 <template>
 
-<div class="flex flex-col gap-4 justify-center items-center bg-[#E3F6F8] p-20 w-full h-auto md:h-[500px]">
-    <label class="text-[2.4rem] text-primary leading-[3rem] font-semibold font-serif md:text-5xl md:p-8 lg:text-6xl lg:p-5" for="keyword">¿Qué libro quieres ofrecer?</label>
-    <input type="keyword" v-model="keyWord" class="bg-white px-5 outline-none border-3 border-[#2A9AAA] rounded-full p-3 w-full md:w-1/3 text-center" name="keyword" placeholder="Escribe título, autor o género">
-    <button v-on:click="findBooks"  class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">Buscar</button>
+<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-44 px-5 md:p-36 w-full h-auto gap-5">
+    <label class="text-[2.3rem] text-primary leading-[3rem] font-semibold font-serif md:text-5xl md:p-8 lg:text-6xl lg:p-5" for="keyword">¿Qué libro quieres ofrecer?</label>
+    <input type="keyword" v-model="keyWord" class="bg-white px-5 outline-none border-3 border-[#2A9AAA] rounded-full p-3 w-full md:w-1/3 text-center focus:bg-white" name="keyword" placeholder="Escribe título, autor o género">
+    <button v-on:click="findBooks"  class= "text-primary border-2 border-[#207581] mt-5 py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">Buscar</button>
   
   </div>
 
@@ -39,9 +39,19 @@
        
     </div>
 
-    <div v-if="saveok">
-      <p class="text-xl">Tu libro se cargó correctamente!</p>
+    <div class="grid grid-cols-1 md:grid-cols-2  w-full text-center  items-center justify-center -mt-10 p-5" v-if="saveok">
+      
+      <div class="flex flex-col gap-8 ">
+      <h3 class="font-serif text-[2rem] w-full text-center md:p-5 font-bold md:text-[3rem] "> ¡Tu libro se cargó correctamente! 🎉</h3>
+     
+      <div class="flex flex-col md:flex-row justify-center gap-3">
+          <RouterLink  to="/" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver libros</RouterLink>
+          <Button @click="sliderFocus" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">➕ Añadir otro libro</Button>
+      </div>
     </div>
+      <img class="w-full" src="../images/happy-man-with-book-in-his-hand.svg" alt="Hombre feliz con libro en su mano" />
+   
+   </div>
 </template>
 
 
@@ -90,6 +100,8 @@ export default {
     ...mapActions(useApiStore, ['getBooksByKeyWord', 'clearBooks']),
     ...mapActions(useUsersBooksStore, ['booksForApiCards', 'saveBook', 'booksForCards']),
     ...mapActions(useUsersStore, ['newUser', 'usersData']),
+
+   
 
     findBooks(){
         this.getBooksByKeyWord(this.keyWord)
@@ -213,7 +225,12 @@ export default {
     this.selectedBook = null
     this.clearBooks();
 
-  }
+  },
+  sliderFocus(){
+      this.$nextTick(() => {
+        this.$refs.sliderContainer.scrollIntoView({ behavior: 'smooth' })
+      })
+    },
 
 }
 }

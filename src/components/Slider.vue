@@ -13,9 +13,9 @@
     <div
       class="relative z-10 flex flex-col justify-center items-center text-center w-full h-full p-8 md:p-8"
     >
-      <div class="flex flex-col p-8 font-serif w-[80%] gap-5 max-w-lg">
+      <div class="flex flex-col p-3 font-serif w-[80%] gap-1 max-w-lg">
         <h1
-          class="text-[2.4rem] leading-[3rem] font-bold md:text-5xl md:p-8 lg:text-6xl lg:p-5"
+          class="text-[2rem] leading-[3rem] font-bold md:text-5xl md:p-8 lg:text-6xl lg:p-5"
         >
           <span class="text-[#1B626D]">Lee,</span> comparte,
           <span class="text-[#1B626D]">recicla</span>
