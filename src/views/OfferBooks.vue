@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     ...mapActions(useApiStore, ['getBooksByKeyWord', 'clearBooks']),
-    ...mapActions(useUsersBooksStore, ['booksForApiCards', 'saveBook', 'booksForCards']),
+    ...mapActions(useUsersBooksStore, ['saveBook', 'booksForCards']),
     ...mapActions(useUsersStore, ['newUser', 'usersData']),
 
    

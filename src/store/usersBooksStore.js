@@ -5,23 +5,18 @@ import usersDB from '../db/usersDB.js';
 
 export const useUsersBooksStore = defineStore ('usersBooksStore', { 
     state: () => ({
-    usersBooksApi:[],
+    usersBooksApi: usersBooksDB,
     usersBooks: usersBooksDB,
     users: [],
 
     }),
     actions: {
-         booksForApiCards(){
-            this.usersBooksApi = usersBooksDB
-        
-        }, 
         saveBook(book){
             this.usersBooks.push(book)
             
         },
 
         async booksForCards(){
-            // this.usersBooks = usersBooksDB;
             this.users = usersDB;
             const userBooksPromises = this.usersBooks.map(async userBook =>{
               const response =  await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${userBook.isbn}`)
