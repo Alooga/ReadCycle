@@ -13,9 +13,9 @@
     <div
       class="relative z-10 flex flex-col justify-center items-center text-center w-full h-full p-8 md:p-8"
     >
-      <div class="flex flex-col p-3 font-serif w-[80%] gap-1 max-w-lg">
+      <div class="flex flex-col p-8 font-serif w-[80%] gap-5 md:gap-8 max-w-lg">
         <h1
-          class="text-[2rem] leading-[3rem] font-bold md:text-5xl md:p-8 lg:text-6xl lg:p-5"
+          class="text-[2rem] leading-[3rem] font-bold md:text-5xl lg:text-6xl "
         >
           <span class="text-[#207581]">Lee,</span> comparte,
           <span class="text-[#207581]">recicla</span>
@@ -24,7 +24,7 @@
           Dale una nueva vida a tus libros
         </p>
         <div
-          class="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 text-base md:text-lg font-sans  py-3 px-5 w-full max-w-lg md:max-w-xl mx-auto"
+          class="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 text-base md:text-lg font-sans  w-full max-w-lg md:max-w-xl mx-auto"
         >
           <RouterLink
             class="text-primary border-2 bg-white border-[#207581] py-3 px-5 rounded-full hover:bg-[#207581] hover:text-white text-base md:text-lg w-auto md:w-auto"
@@ -48,8 +48,6 @@
 <script>
 export default {
   name: "Slider",
-  data() {
-    return;
-  },
+  
 };
 </script>

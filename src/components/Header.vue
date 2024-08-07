@@ -3,7 +3,7 @@
     <nav class="relative px-4 py-5 flex justify-between items-center bg-white">
       <RouterLink to="/">
           <img
-            class="w-[70%] md:ml-20"
+            class="w-[60%] md:ml-20"
             src="../images/logo-read-cycle.svg"
             alt="logotipo readcycle"
           />
