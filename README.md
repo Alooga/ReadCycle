@@ -1,3 +1,8 @@
+
+<div align="center">
+<img src="logo-read-cycle.svg" height="90px" width="auto" /> 
+</div>
+
 # ​♻️​📚 ​Vue ReadCycle
 
 En este repositorio tenemos el proyecto ReadCycle. Se trata de una aplicación de intercambio de libros usados como una manera sostenible de fomentar la lectura.
@@ -14,6 +19,7 @@ En la aplicación podrás:
 - JavaScript: Lenguaje
 - Pinia: Conexiones con Api
 - Tailwind: Estilos CSS
+- Google Books Api: Para encontrar los libros y todos los datos necesarios
 
 ## 🚀 Empezar
 
