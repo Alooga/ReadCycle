@@ -21,8 +21,7 @@
             <p>{{ book.year }}</p>
             <p class="pb-5">{{ book.publisher }}</p>
             <p class="text-left md:text-justify">{{ book.description }}</p> 
-<!--             <p>{{ bookById.status }}</p>
- -->            
+          
 <!-- Botón de reservar -->
             <button v-if="!showInputs" @click="showInputs=true" class= "text-primary border border-[#207581] py-2 px-4 rounded-full hover:bg-[#207581] hover:text-[white] w-[150px] self-center my-20"
             aria-label="View book details">Reservar</button>
@@ -74,7 +73,7 @@ export default {
     },
     data() {
         return {
-            book:[],
+           
             showInputs: false,
             showMsj: false,
             errors: [],
@@ -86,23 +85,22 @@ export default {
 
     computed: {
         ...mapState(useUsersBooksStore,['usersBooks']),
-        
+        book() {
+        return this.usersBooks.find(book => book.id == this.id);
+        }
 
     },
 
     //se invoca automaticamente sin accion del usuario
     mounted() {
-        this.fetchBook()
+       
+        this.booksForCards()
        
     },
 
     methods: {
         ...mapActions(useUsersBooksStore, ['booksForCards', 'updateBookStatus' ]),
         
-        async fetchBook() {
-            await this.booksForCards();
-            this.book = this.usersBooks.find(book => book.id == this.id);
-        },
 
         reserveBook(){
             if(this.checkForm()) {
