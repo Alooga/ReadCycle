@@ -6,9 +6,11 @@
         </div>
         <div class="text-left self-center px-8 md:px-20">
                     <h1 class="font-serif text-2xl font-bold text-left mt-10 lg:text-4xl">{{ book.title }}</h1>
+                    
                     <div v-for="author in book.author" :key="author">
                         <p class="text-md leading-[1rem] lg:pt-5"><span class="font-bold">Autor: </span>{{ author }}</p>
                     </div>
+                    
                     <p><span class="font-bold">Fecha de publicación: </span>{{ book.year }}</p>
                     <p class="pb-5"><span class="font-bold">Editorial: </span>{{ book.publisher }}</p>
                     <p class="text-[1rem]">

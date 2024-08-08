@@ -25,7 +25,7 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
                    const bookAuthor =  data.items[0].volumeInfo.authors
                    const bookImage =  data.items[0].volumeInfo.imageLinks?.thumbnail
                    const bookDescription = data.items[0].volumeInfo.description
-                   const bookYear = data.items[0].volumeInfo.publishedDate.slice(0, 4);
+                   const bookYear = data.items[0].volumeInfo.publishedDate;
                    const bookPublisher = data.items[0].volumeInfo.publisher
                    const isbn = data.items[0].volumeInfo.industryIdentifiers[0].identifier
 
