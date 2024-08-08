@@ -28,9 +28,9 @@
         <h1 class="w-full font-regular text-md">Has seleccionado el libro:</h1>
         <p class="font-serif font-bold text-2xl"> {{ selectedBook.volumeInfo.title }}</p>
         <img
-              class="max-w-200px] h-auto object-contain self-center"
+              class="max-w-[200px] h-auto object-contain self-center"
               :src="selectedBook.volumeInfo.imageLinks?.thumbnail"
-              :alt="`portada de ${selectedBook.volumeInfo.title}`"
+              :alt="`portada de ${selectedBook.title}`"
             />
         
       </div>
@@ -39,15 +39,17 @@
         <input name="email" type="email" class="border-2 py-3 w-full px-5 rounded-full" placeholder="Email" v-model="email">
         <input name="location" type="text" class="border-2 py-3 px-5 rounded-full w-full" placeholder="Ubicación" v-model="location">
         <button @click="registerBook" class="bg-[#207581] rounded-[2rem] text-white w-full py-3 hover:bg-[#115D67] px-5">Registrar</button>
-      </div>
-    </div>
-
-  <p class="mt-10" v-if="errors.length">
-    <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
-    <ul>
+      <div> <ul class="text-center text-[0.8rem] text-[#FF0000]" v-if="errors.length">
       <li v-for="error in errors">{{ error }}</li>
     </ul>
-  </p>
+  </div>
+      </div>
+      
+    </div>
+
+
+   
+   
 
     <div >
         <ApiBookCard class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-10" @bookselected="saveIsbnBook" :books="books"></ApiBookCard>
@@ -61,7 +63,7 @@
      
       <div class="flex flex-col md:flex-row justify-center gap-3">
           <RouterLink  to="/" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver libros</RouterLink>
-          <Button @click="sliderFocus" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">➕ Añadir otro libro</Button>
+          <button @click="sliderFocus" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">➕ Añadir otro libro</button>
       </div>
     </div>
       <img class="w-full" src="../images/happy-man-with-book-in-his-hand.svg" alt="Hombre feliz con libro en su mano" />
@@ -145,13 +147,13 @@ export default {
         return true;
       }
       if (!this.userName) {
-        this.errors.push('El nombre es obligatorio.');
+        this.errors.push('*El nombre es obligatorio.');
       }
       if (!this.email) {
-        this.errors.push('El Email es obligatorio.');
+        this.errors.push('*El Email es obligatorio.');
       }
       if (!this.location) {
-        this.errors.push('La ubicación es obligatoria.');
+        this.errors.push('*La ubicación es obligatoria.');
       }
       return false;
     },
