@@ -16,10 +16,10 @@ ReadCycle es una plataforma para el intercambio de libros usados, diseñada para
 
 ## ⭐​ Objetivo
 
-- Descubre: Ver los últimos libros disponibles para intercambiar
-- Comparte: Cargar un libro que ya leiste y te gustaria cambiar
-- Busqueda: Realizar una busqueda de los libros disponibles por titulo o autores
-- Reserva: Reservar el libro que te interesa
+- Descubrir: Ver los últimos libros disponibles para intercambiar.
+- Compartir: Cargar un libro que ya leíste y te gustaría cambiar.
+- Búscar: Realizar una búsqueda de los libros disponibles por título o autores.
+- Reservar: Reserva el libro que te interesa.
 
 
 ## 🛠️ Stack
@@ -42,7 +42,7 @@ ReadCycle es una plataforma para el intercambio de libros usados, diseñada para
 ### 3. Ejecuta el servidor de desarrollo
 - Ejecuta `npm run dev` para ejecutar el servidor de desarrollo.
 
-* Se deberia abrir automaticamente [**http://localhost:5173**](http://localhost:5173/) en tu navegador y veras la app 🚀
+* Se deberia abrir automáticamente [**http://localhost:5173**](http://localhost:5173/) en tu navegador y veras la app 🚀
 
 
 ## 🧞 Quienes somos?
