@@ -56,12 +56,12 @@
        
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2  w-full text-center  items-center justify-center -mt-10 p-5" v-if="saveok">
+    <div class="grid grid-cols-1 md:grid-cols-2  w-full text-center  items-center justify-center md:-mt-28 p-8 md:px-32" v-if="saveok">
       
       <div class="flex flex-col gap-8 ">
-      <h3 class="font-serif text-[2rem] w-full text-center md:p-5 font-bold md:text-[3rem] "> ¡Tu libro se cargó correctamente! 🎉</h3>
+      <h3 ref="bookPublish" class="font-serif text-[2rem] w-full text-center md:text-left font-bold md:text-[2.5rem]"> ¡Tu libro se cargó <br>correctamente! 🎉</h3>
      
-      <div class="flex flex-col md:flex-row justify-center gap-3">
+      <div class="flex flex-col md:flex-row justify-left gap-3">
           <RouterLink  to="/" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver libros</RouterLink>
           <button @click="sliderFocus" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">➕ Añadir otro libro</button>
       </div>
@@ -234,6 +234,9 @@ export default {
       //Vaciar variables
       this.resetFields();
     }
+    this.$nextTick(() => {
+        this.$refs.bookPublish.scrollIntoView({ behavior: 'smooth' })
+      })
   },
 
   //metodo para resetear las variables
