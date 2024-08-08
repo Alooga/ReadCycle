@@ -2,7 +2,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-[20%_80%] gap-12 p-28 items-center justify-center">
         <div class="flex justify-center items-center">
-            <img :src="book.image" :alt="bookImageAlt" class="w-[400px] ">
+            <img :src="book.image" :alt="`portada de ${book.title}`" class="w-[400px] ">
         </div>
         <div class="text-left self-center">
                     <h1 class="font-serif text-2xl font-bold text-left mt-10 lg:text-4xl">{{ book.title }}</h1>
