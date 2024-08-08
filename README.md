@@ -5,21 +5,27 @@
 
 # ​♻️​📚 ​Vue ReadCycle
 
-En este repositorio tenemos el proyecto ReadCycle. Se trata de una aplicación de intercambio de libros usados como una manera sostenible de fomentar la lectura.
+ReadCycle es una plataforma para el intercambio de libros usados, diseñada para conectar a personas que comparten su pasión por la lectura y que apoyan una economía sostenible.
+
+¡Lee, comparte y recicla con ReadCycle!
+
 
 ## ⭐​ Objetivo
 
-En la aplicación podrás:
-- Ver los últimos libros disponibles para intercambiar y solicitarlos
-- Cargar un libro que ya leiste y te gustaria cambiar
-- Realizar una busqueda de los libros disponibles por titulo o autores
+- Descubre: Ver los últimos libros disponibles para intercambiar
+- Comparte: Cargar un libro que ya leiste y te gustaria cambiar
+- Busqueda: Realizar una busqueda de los libros disponibles por titulo o autores
+- Reserva: Reservar el libro que te interesa
+
 
 ## 🛠️ Stack
+
 - Vue: Framework
 - JavaScript: Lenguaje
 - Pinia: Conexiones con Api
 - Tailwind: Estilos CSS
-- Google Books Api: Para encontrar los libros y todos los datos necesarios
+- Google Books Api: Para encontrar todos los datos necesarios de un libro
+
 
 ## 🚀 Empezar
 
@@ -28,6 +34,7 @@ En la aplicación podrás:
 - Ejecuta `npm run dev` para ejecutar el servidor de desarrollo.
 
 * Se deberia abrir automaticamente [**http://localhost:5173**](http://localhost:5173/) en tu navegador y veras la app 🚀
+
 
 ## 🧞 Quienes somos?
 - [**https://www.linkedin.com/in/jeaneth-sanchez/**](Jeaneth Sanchez)
