@@ -7,7 +7,7 @@
   />
 </div>
 
-# ​♻️​📚 ​Vue ReadCycle
+# 📚​♻️​ ​Vue ReadCycle
 
 ReadCycle es una plataforma para el intercambio de libros usados, diseñada para conectar a personas que comparten su pasión por la lectura y que apoyan una economía sostenible.
 
@@ -33,8 +33,13 @@ ReadCycle es una plataforma para el intercambio de libros usados, diseñada para
 
 ## 🚀 Empezar
 
-### 1. Instala los paquetes necesarios
+### 1. Clona el repositorio
+- [**https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository**](Instrucciones para clonar el repositorio)
+
+### 2. Instala los paquetes necesarios
 - Ejecutar `npm install` para instalar los package.
+
+### 3. Ejecuta el servidor de desarrollo
 - Ejecuta `npm run dev` para ejecutar el servidor de desarrollo.
 
 * Se deberia abrir automaticamente [**http://localhost:5173**](http://localhost:5173/) en tu navegador y veras la app 🚀
