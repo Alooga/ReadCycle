@@ -1,18 +1,17 @@
 <template>
 
-    <div class="grid grid-cols-1 md:grid-cols-[20%_80%] gap-12 p-8 md:p-28 items-center justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-[20%_80%] gap-12 p-8 md:p-32 items-center justify-center">
         <div class="flex justify-center items-center">
             <img :src="book.image" :alt="`portada de ${book.title}`" class="w-[200px] md:w-[400px] ">
         </div>
-        <div class="text-left self-center px-8 md:px-20">
-                    <h1 class="font-serif text-2xl font-bold text-left mt-10 lg:text-4xl">{{ book.title }}</h1>
-                    
+        <div class="flex flex-col gap-3 text-left self-center md:px-20">
+                    <h1 class="font-serif text-3xl font-bold text-left mt-10 lg:text-4xl">{{ book.title }}</h1>
                     <div v-for="author in book.author" :key="author">
                         <p class="text-md leading-[1rem] lg:pt-5"><span class="font-bold">Autor: </span>{{ author }}</p>
                     </div>
                     
                     <p><span class="font-bold">Fecha de publicación: </span>{{ book.year }}</p>
-                    <p class="pb-5"><span class="font-bold">Editorial: </span>{{ book.publisher }}</p>
+                    <p><span class="font-bold">Editorial: </span>{{ book.publisher }}</p>
                     <p class="text-[1rem]">
         <span class="font-bold">Descripción: </span>
         <span v-if="isDescriptionTruncated">
@@ -67,15 +66,22 @@
         </div>
     <div>
  <div>
-          
     
-         <div ref="messageContainer" class="grid grid-cols-1 p-8 text-left md:text-center  md:items-center md:justify-center pb-40 gap-5" v-if="showMsj">
-                 <h5 class="font-serif font-semibold text-[2rem]">Has reservado el libro {{ book.title }}!</h5>
-                 <p>Hemos enviado a tu email los datos de contacto para que realicen el intercambio</p>
-                 <p class="font-bold">Disfruta tu lectura!</p>
-                 <RouterLink  to="/" class= "text-primary border-2 text-center md:mx-auto  border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver más libros</RouterLink>
-             </div>
-
+    <div class="grid grid-cols-1 md:grid-cols-2  w-full bg-[#fafafa] text-left  items-center justify-left md:-mt-28 p-8 md:px-32" v-if="showMsj">
+      
+      <div class="flex flex-col gap-5 ">
+      <p class="font-semibold text-lg"> HAS RESERVADO EL LIBRO</p>
+        <p class="font-serif text-[1.5rem] w-full font-bold md:text-[2.5rem]">{{ book.title }}</p>
+      <p>Hemos enviado a tu email los datos de la persona que tiene el libro para que realicen el intercambio</p>
+      <p class="font-bold">Disfruta tu lectura!</p>
+     
+      <div class="flex flex-col md:flex-row justify-left gap-3">
+          <RouterLink  ref="messageContainer"  to="/" class= "text-primary border-2 text-center border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver más libros</RouterLink>
+      </div>
+    </div>
+      <img class="w-full" src="../images/woman-opening-big-book.svg" alt="Hombre feliz con libro en su mano" />
+   
+   </div>
     
         
     </div>
@@ -134,11 +140,18 @@ export default {
             this.showMsj = true
             this.updateBookStatus(this.id);
             console.log(this.usersBooks)
-
             this.$nextTick(() => {
-            this.$refs.messageContainer.scrollIntoView({ behavior: 'smooth' })
-            })
-        }
+                const messageContainer = this.$refs.messageContainer;
+                if (messageContainer) {
+                    console.log("Scrolling to messageContainer");
+                    messageContainer.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.error("messageContainer ref not found.");
+                }
+            });
+        
+                }
+        
         },
           //aquí checkeo que todos los inputs esten completos
         checkForm() {
