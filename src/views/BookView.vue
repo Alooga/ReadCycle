@@ -67,7 +67,7 @@
     <div>
  <div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2  w-full bg-[#fafafa] text-left  items-center justify-left md:-mt-28 p-8 md:px-32" v-if="showMsj">
+    <div  class="grid grid-cols-1 md:grid-cols-2  w-full bg-[#fafafa] text-left  items-center justify-left md:-mt-28 p-8 md:px-32" v-if="showMsj">
       
       <div class="flex flex-col gap-5 ">
       <p class="font-semibold text-lg"> HAS RESERVADO EL LIBRO</p>
@@ -75,11 +75,11 @@
       <p>Hemos enviado a tu email los datos de la persona que tiene el libro para que realicen el intercambio</p>
       <p class="font-bold">Disfruta tu lectura!</p>
      
-      <div class="flex flex-col md:flex-row justify-left gap-3">
-          <RouterLink  ref="messageContainer"  to="/" class= "text-primary border-2 text-center border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver más libros</RouterLink>
+      <div ref="messageContainer" class="flex flex-col md:flex-row justify-left gap-3" >
+          <RouterLink  to="/" class= "text-primary border-2 text-center border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">👁️ Ver más libros</RouterLink>
       </div>
     </div>
-      <img class="w-full" src="../images/woman-opening-big-book.svg" alt="Hombre feliz con libro en su mano" />
+      <img  class="w-full" src="../images/woman-opening-big-book.svg" alt="Hombre feliz con libro en su mano" />
    
    </div>
     
@@ -136,19 +136,14 @@ export default {
 
         reserveBook(){
             if(this.checkForm()) {
-            //cambiar estado del libro a no disponible
-            this.showMsj = true
-            this.updateBookStatus(this.id);
-            console.log(this.usersBooks)
+           
             this.$nextTick(() => {
-                const messageContainer = this.$refs.messageContainer;
-                if (messageContainer) {
-                    console.log("Scrolling to messageContainer");
-                    messageContainer.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    console.error("messageContainer ref not found.");
-                }
-            });
+                this.$refs.messageContainer.scrollIntoView({ behavior: 'smooth' })
+        })
+            //Llamar al metodo para cambiar el estado
+            this.updateBookStatus(this.id);
+             //Mostrar mensaje de carga ok
+            this.showMsj = true
         
                 }
         
