@@ -1,6 +1,10 @@
 
 <div align="center">
-<img src="logo-read-cycle.svg" height="90px" width="auto" /> 
+  <img
+    class="w-[60%] md:ml-20"
+    src="../images/logo-read-cycle.svg"
+    alt="logotipo readcycle"
+  />
 </div>
 
 # ​♻️​📚 ​Vue ReadCycle
