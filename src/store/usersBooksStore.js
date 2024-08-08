@@ -5,23 +5,18 @@ import usersDB from '../db/usersDB.js';
 
 export const useUsersBooksStore = defineStore ('usersBooksStore', { 
     state: () => ({
-    usersBooksApi:[],
-    usersBooks:[],
+    usersBooksApi: usersBooksDB,
+    usersBooks: usersBooksDB,
     users: [],
 
     }),
     actions: {
-         booksForApiCards(){
-            this.usersBooksApi = usersBooksDB
-        
-        }, 
         saveBook(book){
-            this.usersBooksApi.push(book)
-            //unshift
+            this.usersBooks.push(book)
+            
         },
 
         async booksForCards(){
-            this.usersBooks = usersBooksDB;
             this.users = usersDB;
             const userBooksPromises = this.usersBooks.map(async userBook =>{
               const response =  await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${userBook.isbn}`)
@@ -46,6 +41,11 @@ export const useUsersBooksStore = defineStore ('usersBooksStore', {
            this.usersBooks = await Promise.all(userBooksPromises)
     
         },
+        updateBookStatus(id) {
+            const updateBookId = this.usersBooks.findIndex(book => book.id == id)
+            this.usersBooks[updateBookId].status = false
+        
+          },
 
     
        

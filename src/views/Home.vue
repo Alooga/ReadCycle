@@ -60,6 +60,7 @@
 <script>
 import Slider from "../components/Slider.vue";
 import BookCard from "../components/BookCard.vue";
+import { mapActions, mapState } from 'pinia'
 import { useUsersBooksStore } from "../store/usersBooksStore";
 import { onMounted, computed } from "vue";
 
@@ -68,21 +69,21 @@ export default {
     BookCard,
     Slider,
   },
-  setup() {
-    const usersBooksStore = useUsersBooksStore();
-
-    onMounted(() => {
-      usersBooksStore.booksForCards();
-    });
-
-    const usersBooks = computed(() => usersBooksStore.usersBooks);
-    const availableBooks = computed(() => {
-      return usersBooks.value.filter(book => book.status == true).sort((a, b) => b.id - a.id);;
-    });
-
-    return {
-      availableBooks
-    };
+  
+  computed: {
+    ...mapState(useUsersBooksStore, ['usersBooks']),
+    
+    availableBooks() {
+      return this.usersBooks.filter(book => book.status == true).sort((a, b) => b.id - a.id);
+    },
   },
+   mounted() {
+    this.booksForCards();
+   
+  },
+  methods: {
+    ...mapActions(useUsersBooksStore, ['booksForCards']),
+  },
+  
 };
 </script>
