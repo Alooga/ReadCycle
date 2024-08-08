@@ -11,8 +11,17 @@
                     </div>
                     <p><span class="font-bold">Fecha de publicación: </span>{{ book.year }}</p>
                     <p class="pb-5"><span class="font-bold">Editorial: </span>{{ book.publisher }}</p>
-                    <p class="text-[1rem]"><span class="font-bold">Decripción: </span>{{ book.description }}</p> 
-                    
+                    <p class="text-[1rem]">
+        <span class="font-bold">Descripción: </span>
+        <span v-if="isDescriptionTruncated">
+          {{ truncatedDescription }}
+          <button @click="toggleDescription" class="text-blue-500">Leer más</button>
+        </span>
+        <span v-else>
+          {{ book.description }}
+          <button @click="toggleDescription" class="text-blue-500">Leer menos</button>
+        </span>
+      </p>
                     <div class="flex flex-col gap-5 md:flex-row justify-between md:items-center py-10 ">
                         <div>
                             
@@ -92,6 +101,8 @@ export default {
             errors: [],
             name: "",
             email:"",
+            descriptionLimit: 400,
+            isDescriptionTruncated: true,
            
         };
     },
@@ -100,7 +111,14 @@ export default {
         ...mapState(useUsersBooksStore,['usersBooks']),
         book() {
         return this.usersBooks.find(book => book.id == this.id);
-        }
+        },
+
+        truncatedDescription() {
+      if (this.book && this.book.description.length > this.descriptionLimit) {
+        return this.book.description.substring(0, this.descriptionLimit) + '...';
+      }
+      return this.book ? this.book.description : '';
+    }
 
     },
 
@@ -141,7 +159,9 @@ export default {
             }
             return false;
             },
-           
+             toggleDescription() {
+      this.isDescriptionTruncated = !this.isDescriptionTruncated;
+    },
     },
                     
 
