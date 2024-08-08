@@ -30,7 +30,7 @@
         <img
               class="max-w-200px] h-auto object-contain self-center"
               :src="selectedBook.volumeInfo.imageLinks?.thumbnail"
-              alt=""
+              :alt="`portada de ${selectedBook.volumeInfo.title}`"
             />
         
       </div>

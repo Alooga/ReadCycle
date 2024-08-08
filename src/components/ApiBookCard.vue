@@ -29,7 +29,7 @@
             <img
               class="max-w-[120px] h-auto object-contain"
               :src="book.volumeInfo.imageLinks?.thumbnail"
-              alt=""
+              :alt="`portada de ${book.volumeInfo.title}`"
             />
             <div class="flex flex-col gap-3">
               <h3 class="font-serif text-[1.2rem] font-bold">{{ book.volumeInfo.title }}</h3>

@@ -9,7 +9,7 @@
       <img
         class="max-w-[100px] h-auto object-contain"
         :src="book.image"
-        alt="Book Cover"
+        :alt="`portada de ${book.title}`"
       />
       <div class="flex flex-col justify-around gap-3 w-full">
         <div class="space-y-3">
