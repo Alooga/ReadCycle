@@ -34,7 +34,7 @@ ReadCycle es una plataforma para el intercambio de libros usados, diseñada para
 ## 🚀 Empezar
 
 ### 1. Clona el repositorio
-- [**https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository**](Instrucciones para clonar el repositorio)
+- Instrucciones para clonar el repositorio:[**https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository**](https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository)
 
 ### 2. Instala los paquetes necesarios
 - Ejecutar `npm install` para instalar los package.
@@ -46,6 +46,7 @@ ReadCycle es una plataforma para el intercambio de libros usados, diseñada para
 
 
 ## 🧞 Quienes somos?
-- [**https://www.linkedin.com/in/jeaneth-sanchez/**](Jeaneth Sanchez)
-- [**https://www.linkedin.com/in/nadia-lago-saez/**](Nadia Lago Sáez)
-- [**https://www.linkedin.com/in/alexandra-lopez-garrido**](Alexandra Lopez Garrido)
+
+- Jeaneth Sanchez ->[**https://www.linkedin.com/in/jeaneth-sanchez/**](https://www.linkedin.com/in/jeaneth-sanchez/)
+- Nadia Lago Sáez ->[**https://www.linkedin.com/in/nadia-lago-saez/**](https://www.linkedin.com/in/nadia-lago-saez/)
+- Alexandra Lopez Garrido ->[**https://www.linkedin.com/in/alexandra-lopez-garrido**](https://www.linkedin.com/in/alexandra-lopez-garrido)
