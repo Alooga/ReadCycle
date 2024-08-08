@@ -2,7 +2,7 @@
 <div align="center">
   <img
     class="w-[60%] md:ml-20"
-    src="../images/logo-read-cycle.svg"
+    src="/src/images/logo-read-cycle.svg"
     alt="logotipo readcycle"
   />
 </div>
