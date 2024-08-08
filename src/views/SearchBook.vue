@@ -10,7 +10,7 @@
           v-model="keyword"
           type="text"
          class="w-full bg-white px-5 py-3 outline-none rounded-full "
-          placeholder="Escribe título, autor o género"
+          placeholder="Escribe título o autor"
         />
         
 
