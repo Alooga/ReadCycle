@@ -77,10 +77,7 @@ export default {
       return this.usersBooks.filter(book => book.status == true).sort((a, b) => b.id - a.id);
     },
   },
-   mounted() {
-    this.booksForCards();
-   
-  },
+  
   methods: {
     ...mapActions(useUsersBooksStore, ['booksForCards']),
   },
