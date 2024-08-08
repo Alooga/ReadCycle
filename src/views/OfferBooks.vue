@@ -197,8 +197,6 @@ export default {
   },
   // Metodo para llamar a todos los anteriores al tocar el boton registrar
   registerBook(){
-    //Comprbacion: inicializo el array para ver que estan todos los libros cargados juntos
-    this.booksForCards()
 
     //Revisar formulario
   if(this.checkForm()){
@@ -235,9 +233,6 @@ export default {
     
       //Vaciar variables
       this.resetFields();
-
-      //Actualizar Home
-      this.booksForCards();
     }
   },
 

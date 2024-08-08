@@ -104,13 +104,6 @@ export default {
 
     },
 
-    //se invoca automaticamente sin accion del usuario
-    mounted() {
-       
-        this.booksForCards()
-       
-    },
-
     methods: {
         ...mapActions(useUsersBooksStore, ['booksForCards', 'updateBookStatus' ]),
         

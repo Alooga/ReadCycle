@@ -29,6 +29,8 @@
           :book="book"
         />
       </div>
+
+      <div v-if="msj == true">No se encontraron libros</div>
 </template>
 
 
@@ -44,6 +46,8 @@ export default {
         return {
             keyword:"",
             books: [],
+            msj:false,
+            
         }
     },
     computed: {
@@ -55,13 +59,21 @@ export default {
     },
 
     methods:{
+      normalizeString(str){
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      },
       searchBook(){
-          console.log(this.usersBooks)
-            this.books = this.usersBooks.filter(book => 
-            book.title.toLowerCase().includes(this.keyword.toLowerCase()))
-            console.log(this.books)
-           
-        }
+            
+            
+            const lowerKeyword = this.normalizeString(this.keyword.toLowerCase())
+            this.books = this.usersBooks.filter(book => {
+            const searchTitle = this.normalizeString(book.title).toLowerCase().includes(lowerKeyword);
+            const searchAuthor = book.author.some(author => this.normalizeString(author).toLowerCase().includes(lowerKeyword));
+            const result = (searchTitle || searchAuthor) && book.status === true;
+            return result
+          })
+          this.msj = this.books.length === 0;
+      }
 
     },
 }
