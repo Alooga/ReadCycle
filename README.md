@@ -1,5 +1,52 @@
-# Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<div align="center">
+  <img
+    class="w-[60%] md:ml-20"
+    src="/src/images/logo-read-cycle.svg"
+    alt="logotipo readcycle"
+  />
+</div>
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+# 📚​♻️​ ​Vue ReadCycle
+
+ReadCycle es una plataforma para el intercambio de libros usados, diseñada para conectar a personas que comparten su pasión por la lectura y que apoyan una economía sostenible.
+
+¡Lee, comparte y recicla con ReadCycle!
+
+
+## ⭐​ Objetivo
+
+- Descubrir: Ver los últimos libros disponibles para intercambiar.
+- Compartir: Cargar un libro que ya leíste y te gustaría cambiar.
+- Búscar: Realizar una búsqueda de los libros disponibles por título o autores.
+- Reservar: Reserva el libro que te interesa.
+
+
+## 🛠️ Stack
+
+- Vue: Framework
+- JavaScript: Lenguaje
+- Pinia: Conexiones con Api
+- Tailwind: Estilos CSS
+- Google Books Api: Para encontrar todos los datos necesarios de un libro
+
+
+## 🚀 Empezar
+
+### 1. Clona el repositorio
+- Instrucciones para clonar el repositorio:[**https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository**](https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository)
+
+### 2. Instala los paquetes necesarios
+- Ejecutar `npm install` para instalar los package.
+
+### 3. Ejecuta el servidor de desarrollo
+- Ejecuta `npm run dev` para ejecutar el servidor de desarrollo.
+
+* Se deberia abrir automáticamente [**http://localhost:5173**](http://localhost:5173/) en tu navegador y veras la app 🚀
+
+
+## 🧞 Quienes somos?
+
+- Jeaneth Sanchez ->[**https://www.linkedin.com/in/jeaneth-sanchez/**](https://www.linkedin.com/in/jeaneth-sanchez/)
+- Nadia Lago Sáez ->[**https://www.linkedin.com/in/nadia-lago-saez/**](https://www.linkedin.com/in/nadia-lago-saez/)
+- Alexandra Lopez Garrido ->[**https://www.linkedin.com/in/alexandra-lopez-garrido**](https://www.linkedin.com/in/alexandra-lopez-garrido)

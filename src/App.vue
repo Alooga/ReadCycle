@@ -4,22 +4,60 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    <h1>Esto es la home</h1>
-    <HelloWorld></HelloWorld>
+
+    <Header />
+
+    <RouterView />
+    
   </div>
+  <Footer/>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<script>
+import Home from './views/Home.vue'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import { mapActions } from 'pinia'
+import { mapState } from 'pinia'
+import { useUsersBooksStore } from './store/usersBooksStore.js'
+import { useUsersStore } from './store/usersStore.js'
+import { useApiStore } from './store/apiBooksStore.js'
+
+export default {
+  name: "App",
+  components: {Header, Footer},
+  data(){
+    return {
+    keyWord:"",
+
+  }
+  },
+  methods: {
+      ...mapActions(useUsersBooksStore, ['booksForCards']),
+      ...mapActions(useUsersStore, ['usersData', 'userDataById']),
+      ...mapActions(useApiStore, ['getBooksByIsbn', 'getBooksByKeyWord']),
+      
+      findBooks(){
+        this.getBooksByKeyWord(this.keyWord)
+        console.log(this.keyWord)
+      },
+      
+    },
+    computed: {
+      ...mapState(useApiStore, ['books']),
+      ...mapState(useUsersBooksStore, ['usersBooks']),
+      ...mapState(useUsersStore, ['users']),
+
+      
+    },
+
+    mounted(){
+      this.booksForCards();
+      this.usersData();
+
+    }
+};
+</script>
+
+<style>
 </style>
