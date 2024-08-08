@@ -32,7 +32,7 @@
                 />
                 <p>{{ book.location }}</p>
             </div>
-                    </div>
+                </div>
                     <button v-if="!showInputs" @click="showInputs=true" class="bg-[#207581] rounded-[2rem] text-white py-3 hover:bg-[#115D67] px-5">Lo quiero</button> 
                     <div v-if="showInputs && !showMsj">
                  <div class="text-left flex gap-5 justify-center items-center w-full">
@@ -50,25 +50,15 @@
                      <button @click="reserveBook" class="bg-[#207581] rounded-[2rem] text-white w-full py-3 hover:bg-[#115D67] px-5"
                      aria-label="View book details">Reservar</button>
                      
-                </div>
+                    </div>
                  
-        </div>
-         </div>
+                    </div>
                 </div>
-                
-               
-                
-       
-                </div> 
-
-                
-               
             </div>
-            
-   
+            </div> 
+        </div>
     <div>
-        
-          <div>
+ <div>
           
     
          <div ref="messageContainer" class="grid grid-cols-1 text-center  items-center justify-center pb-40 gap-5" v-if="showMsj">
