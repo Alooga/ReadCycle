@@ -132,8 +132,7 @@ export default {
     this.isbnBook = book.volumeInfo.industryIdentifiers[0].identifier
     this.titleBook = book.volumeInfo.title
     this.showInputs = true
-    console.log(this.isbnBook)
-    console.log(this.selectedBook.volumeInfo.title)
+
     // Desplazar la vista hacia el formulario
     this.$nextTick(() => {
         this.$refs.formContainer.scrollIntoView({ behavior: 'smooth' })
@@ -170,13 +169,9 @@ export default {
     if (existingUser){
       this.idUser = existingUser.id
       this.userName = existingUser.name
-      //comprobación por consola
-      console.log("esta en la base de datos",this.idUser)
     } 
      //si no existe crearlo autoincrementando el Id más alto  
     else {
-        //comprobación por consola
-        console.log("NO esta en la base de datos")
 
         //Busqueda de último ID para incrementarlo y asignarlo al nuevo usuario
         let ultimoId = Math.max(...this.users.map(obj => obj.id));
@@ -189,9 +184,6 @@ export default {
             email: this.email,
             location: this.location
           })
-        
-        //comprobación por consola
-        console.log("usuario actualizado", this.users)
     } 
    
   },
@@ -209,7 +201,6 @@ export default {
       this.idBook = ultimoIdBook +1;
       
      
-      console.log(this.userName)
       //Ingreso todos los valores en mi BD de books registrados
       this.saveBook({
         id: this.idBook,
@@ -225,9 +216,6 @@ export default {
         location: this.location,
       })
     
-      //Comprobacion: por consola
-      console.log(this.usersBooks)
-      
       //mensaje de carga ok
       this.saveok = true
     

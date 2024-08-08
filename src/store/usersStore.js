@@ -7,10 +7,6 @@ export const useUsersStore = defineStore("usersStore", {
 
   }),
   actions: {
-    /*  usersData() {
-            this.users = usersDB.map((users) => {
-                return users
-                }) */
     usersData() {
       this.users = usersDB;
     },

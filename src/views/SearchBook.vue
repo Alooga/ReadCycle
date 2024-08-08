@@ -31,18 +31,21 @@
       </div>
 
       
+     
       <div class="grid grid-cols-1 md:grid-cols-2  w-full text-left  items-center justify-left md:-mt-28 p-8 md:px-32" v-if="msj == true">
       
       <div class="flex flex-col gap-8 ">
-      <h3 ref="bookPublish" class="font-serif text-[2rem] w-full text-left font-bold md:text-[2.5rem] "> No se encontraron libros </h3>
+      <h3  class="font-serif text-[2rem] w-full text-left font-bold md:text-[2.5rem] "> No se encontraron libros </h3>
      
-      <div class="flex flex-col md:flex-row justify-left gap-3">
+      <div  class="flex flex-col md:flex-row justify-left gap-3">
           <button @click="searchFocus" class= "text-primary border-2 border-[#207581] py-2 px-8 rounded-full hover:bg-[#207581] hover:text-[white]">🔎 Buscar otro libro</button>
       </div>
     </div>
       <img class="w-full" src="../images/woman-searching-for-books.svg" alt="Hombre feliz con libro en su mano" />
    
    </div>
+   <div ref="bookPublish" class="mt-40">
+  </div>
 </template>
 
 
@@ -76,26 +79,37 @@ export default {
       },
       
       searchBook(){
-            const lowerKeyword = this.normalizeString(this.keyword.toLowerCase())
-            this.books = this.usersBooks.filter(book => {
+          this.resultFocus()
+
+          const lowerKeyword = this.normalizeString(this.keyword.toLowerCase())
+            
+          this.books = this.usersBooks.filter(book => {
             const searchTitle = this.normalizeString(book.title).toLowerCase().includes(lowerKeyword);
             const searchAuthor = book.author.some(author => this.normalizeString(author).toLowerCase().includes(lowerKeyword));
             const result = (searchTitle || searchAuthor) && book.status === true;
-            return result
             
+          return result
           })
+
           this.msj = this.books.length === 0;
-          this.$nextTick(() => {
-          this.$refs.bookPublish.scrollIntoView({ behavior: 'smooth' })
-      })
-        
+
+         
       },
 
        searchFocus(){
-      this.$nextTick(() => {
+        this.$nextTick(() => {
         this.$refs.sliderContainer.scrollIntoView({ behavior: 'smooth' })
-      })
-    },
+        })
+      },
+
+      resultFocus(){
+        this.$nextTick(() => {
+        if (this.$refs.bookPublish) {
+            this.$refs.bookPublish.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+      }
+
     },
 }
 </script>

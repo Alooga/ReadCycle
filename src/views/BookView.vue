@@ -89,6 +89,7 @@
         
     </div>
 </div>
+<div ref="messageContainer" class="mt-52"></div>
 </template>
 
 
