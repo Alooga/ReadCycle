@@ -1,6 +1,6 @@
 <template>
 
-<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-60 px-5 md:p-40 w-full h-auto gap-5">
+<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-56 px-5 md:p-[12rem] w-full h-auto gap-5">
     <h3 class="text-[2rem] text-primary leading-[3rem] font-semibold font-serif md:text-4xl md:p-8 lg:text-6xl lg:p-5" for="keyword">Buscar tu libro</h3>
    <div
         id="buscador_top"
@@ -44,7 +44,7 @@
       <img class="w-full" src="../images/woman-searching-for-books.svg" alt="Hombre feliz con libro en su mano" />
    
    </div>
-   <div ref="bookPublish" class="mt-40">
+   <div ref="bookPublish" >
   </div>
 </template>
 

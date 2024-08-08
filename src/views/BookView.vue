@@ -89,7 +89,7 @@
         
     </div>
 </div>
-<div ref="messageContainer" class="mt-52"></div>
+<div ref="messageContainer" class="mt-20"></div>
 </template>
 
 

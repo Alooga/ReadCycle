@@ -1,6 +1,6 @@
 <template>
 
-<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-56 px-5 md:p-40 w-full h-auto gap-5">
+<div ref="sliderContainer" class="flex flex-col justify-center items-center bg-[#E3F6F8] py-56 px-5 md:p-[12rem] w-full h-auto gap-5">
     <label class="text-[2.3rem] text-primary leading-[3rem] font-semibold font-serif md:text-5xl md:p-8 lg:text-6xl lg:p-5" for="keyword">¿Qué libro quieres ofrecer?</label>
     <div
         id="buscador_top"
@@ -69,6 +69,7 @@
       <img class="w-full" src="../images/happy-man-with-book-in-his-hand.svg" alt="Hombre feliz con libro en su mano" />
    
    </div>
+
 </template>
 
 
@@ -122,9 +123,12 @@ export default {
    
 
     findBooks(){
+      if(this.keyWord){
         this.getBooksByKeyWord(this.keyWord)
         this.saveok = false
-  },
+      }
+    },
+  
   
   // esta funcion sirve para captar el isbn del libro que quiero guardar en mi base de datos
   saveIsbnBook(book){
